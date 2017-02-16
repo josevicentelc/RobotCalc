@@ -247,6 +247,8 @@ public class Matriz {
      */
     public String toString(){
         String salida = "";
+        if (rCount==0 || cCount == 0) return "Matriz vacia";
+        
         for (int i=0;i<rCount;i++){
             for (int j=0;j<cCount;j++){
                 salida += "| "+matriz[i][j];

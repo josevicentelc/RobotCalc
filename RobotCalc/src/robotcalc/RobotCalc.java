@@ -7,6 +7,7 @@ package robotcalc;
 
 import robotcalc.Framework.Matriz;
 import robotcalc.Framework.MatrizTransformacion;
+import robotcalc.Framework.Nodo;
 
 /**
  *
@@ -26,7 +27,24 @@ public class RobotCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testRowCol();
+        calculaVectorRotado();
+    }
+    
+    public static void calculaVectorTrasladado(){
+        Nodo n1 = new Nodo();
+        Nodo n2 = new Nodo();
+        n1.addNodo(n2);
+        n2.trasladar(6, -3, 8);
+        Matriz s = n2.getGlobalVector(-2, 7, 3);
+        System.out.println(s.toString());
+    }
+    
+    public static void calculaVectorRotado(){
+        Nodo n1 = new Nodo();
+        Nodo n2 = n1.addNodo();
+        n1.addNodo(n2);
+        n2.rotarZ(-90);
+        System.out.println(n2.getGlobalVector(4, 8, 12));
     }
     
     public static void testRotar(){
