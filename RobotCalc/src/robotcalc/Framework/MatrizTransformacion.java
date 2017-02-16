@@ -58,5 +58,53 @@ public class MatrizTransformacion extends Matriz{
         trasladarZ(z);
     }
     
+    public void rotar(double a, double b, double y){
+        rotarX(a);
+        rotarY(b);
+        rotarZ(y);
+    }
+    
+    
+    public void rotarX(double A){
+        A = Math.toRadians(A);
+        matriz[1][1] = Math.cos(A);
+        matriz[1][2] = Math.sin(A) * -1;
+        matriz[2][1] = Math.sin(A);
+        matriz[2][2] = Math.cos(A);
+        eliminarImprecision();
+    }
+    public void rotarY(double A){
+        A = Math.toRadians(A);
+        matriz[0][0] = Math.cos(A);
+        matriz[0][2] = Math.sin(A);
+        matriz[2][0] = Math.sin(A)*-1;
+        matriz[2][2] = Math.cos(A);
+        eliminarImprecision();
+    }
+    public void rotarZ(double A){
+        A = Math.toRadians(A);
+        matriz[0][0] = Math.cos(A);
+        matriz[0][1] = Math.sin(A) * -1;
+        matriz[1][0] = Math.sin(A);
+        matriz[1][1] = Math.cos(A);
+        eliminarImprecision();
+    }
+    
+    private void eliminarImprecision(){
+        for (int i=0;i<rCount;i++)
+           for (int j = 0;j<cCount;j++){
+               if (Math.abs(round(matriz[i][j]) - matriz[i][j]) < 0.0000001)
+                   matriz[i][j] = round(matriz[i][j]);
+           }
+    }
+    
+    public static int round(double d){
+        int a = (int)d;
+        int b = a+1;
+        double diftoA = Math.abs(d-a);
+        double diftoB = Math.abs(d-b);
+        if (diftoA<diftoB) return a;
+        return b;
+    }
     
 }

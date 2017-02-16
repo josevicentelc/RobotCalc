@@ -79,14 +79,14 @@ public class Matriz {
      * @param col Columna
      * @return Lista de valores de la columna, si no existe se retorna una lista vacia
      */
-    public double[] getCol(int col){
+    public Matriz getCol(int col){
         if (col < 0 || col >= cCount)
-            return new double[0];
+            return new Matriz(0, 0);
         else
         {
-            double[] salida = new double[rCount];
+            Matriz salida = new Matriz(rCount, 1);
             for (int i=0;i<rCount;i++)
-                salida[i] = matriz[i][col];
+                salida.setValue(col, 0, matriz[i][col]); 
             return salida;
         }
     }
@@ -96,14 +96,14 @@ public class Matriz {
      * @param row Fila
      * @return Lista de todos los elementos de la fila, si no existe retorna una lista vacia
      */
-    public double[] getRow(int row){
+    public Matriz getRow(int row){
         if (row < 0 || row >= rCount)
-            return new double[0];
+            return new Matriz(0, 0);
         else
         {
-            double[] salida = new double[cCount];
+            Matriz salida = new Matriz(1, cCount);
             for (int i=0;i<cCount;i++)
-                salida[i] = matriz[row][i];
+                salida.setValue(1, i, matriz[row][i]); 
             return salida;
         }
     }

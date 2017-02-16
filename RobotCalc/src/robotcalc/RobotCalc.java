@@ -26,8 +26,21 @@ public class RobotCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testTrasladar();
+        testRowCol();
     }
+    
+    public static void testRotar(){
+        
+        mt = new MatrizTransformacion();
+        mt.rotarX(90);
+        System.out.println(mt.toString());
+        mt.rotarY(180);
+        System.out.println(mt.toString());
+        mt.rotarX(-90);
+        System.out.println(mt.toString());
+    }
+    
+    
     
     public static void testMT(){
         mt = new MatrizTransformacion();
@@ -39,6 +52,14 @@ public class RobotCalc {
         mt.trasladar(10, 15, 20);
         System.out.println(mt.toString());
     }
+
+    public static void testRowCol(){
+        init();
+        System.out.println(a.toString());
+        System.out.println(a.getCol(2).toString());
+        System.out.println(a.getRow(2).toString());
+    }
+
     
     public static void testTraspuesta(){
         init();
