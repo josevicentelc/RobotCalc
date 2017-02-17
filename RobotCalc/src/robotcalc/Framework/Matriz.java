@@ -258,4 +258,17 @@ public class Matriz {
         return salida;
     }
     
+    /**
+     * Crea una instancia de una nueva matriz que es copia de la actual
+     * @return 
+     */
+    public Matriz copia() {
+        Matriz salida = new Matriz(rCount, cCount);
+        for (int i=0;i<rCount;i++)
+            for (int j=0;j<cCount;j++)
+                salida.matriz[i][j] = matriz[i][j];
+        return salida;
+    }
+
+    
 }

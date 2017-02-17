@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * El nodo representa a cada una de las partes de un sistema robotico
+ * que se mueven como un todo. Cada una de las partes moviles de un robot
+ * que se mueven sobre un origen de coordenadas
  */
 package robotcalc.Framework;
 import java.util.ArrayList;
@@ -16,17 +16,17 @@ public class Nodo {
     /**
      * Origen de coordenadas
      */
-    MatrizTransformacion origen;
+    protected MatrizTransformacion origen;
     
     /**
      * Nodo padre de este sobre el que se calcula el origen de coordenadas
      */
-    Nodo parent = null;
+    protected Nodo parent = null;
     
     /**
      * Lista de nodos hijos
      */
-    List<Nodo> nodos;
+    protected List<Nodo> nodos;
     
     /**
      * Establece el nodo que es padre de este
@@ -41,6 +41,78 @@ public class Nodo {
     public Nodo(){
         origen = new MatrizTransformacion();
         nodos = new ArrayList<Nodo>();
+    }
+    
+    /**
+     * Hace una copia del nodo actual y de todos los nodos que son hijos de el
+     * recreando asi una nueva estructura similar a la actual
+     * @param n Nodo a partir del cual copiar
+     */
+    public Nodo(Nodo n){
+        origen = n.getOrigen().copia();
+        nodos = new ArrayList<Nodo>();
+        for (int i=0;i<n.nodos.size();i++){
+            nodos.add(new Nodo(n.nodos.get(i)));
+        }
+    }
+    
+    /**
+     * Constructor por defecto
+     */
+    public Nodo(double x, double y, double z){
+        origen = new MatrizTransformacion();
+        nodos = new ArrayList<Nodo>();
+        trasladar(x, y, z);
+    }
+    
+    /**
+     * Establece de manera absoluta la traslacion del punto TCP desde el origen de coordenadas
+     * @param x Traslacion en X
+     * @param y Traslacion en Y
+     * @param z Traslacion en Z 
+     */
+    public void setTCP(double x, double y, double z){
+        origen.setX(x);
+        origen.setY(y);
+        origen.setZ(z);
+    }
+    
+    /**
+     * Eliminar de la lista de hijos todas las referencias a la instancia
+     * del nodo pasado por parametro
+     * @param n Nodo a eliminar de la list ade hijos
+     */
+    public void quitarHijo(Nodo n){
+        for (int i=nodos.size()-1;i>=0;i--){
+            if (nodos.get(i) == n) nodos.remove(i);
+        }
+    }
+    
+    
+    
+    /**
+     * Si el actual nodo es hijo de otro nodo, se separa de este
+     * convirtiendose en un nodo independiente y con coordenadas en base al base al mundo
+     */
+    public void separarDePadre(){
+        if (parent != null){
+            Matriz nuevoOrigen = getGlobalVector(parent.getCoordenadas());
+            parent.quitarHijo(this);
+            parent = null;
+            setPosicionAbsoluta(nuevoOrigen.getValue(0, 0), nuevoOrigen.getValue(1, 0), nuevoOrigen.getValue(2, 0));
+        }
+    }
+    
+    /**
+     * Establece de manera absoluta las coordenadas de traslacion del origen de coordenadas
+     * @param x Traslacion en X
+     * @param y Traslacion en Y
+     * @param z Traslacion en Z
+     */
+    public void setPosicionAbsoluta(double x, double y, double z){
+        origen.setX(x);
+        origen.setY(y);
+        origen.setZ(z);
     }
     
     /**
@@ -66,7 +138,7 @@ public class Nodo {
      * Retorna la matriz transformada del origen de coordenadas
      * @return Matriz Homogenea de origen de coordenadas
      */
-    public Matriz getOrigen(){return origen;}
+    public MatrizTransformacion getOrigen(){return origen;}
     
     /**
      * Traslada el origen de coordenadas en el eje X
@@ -148,11 +220,20 @@ public class Nodo {
      */
     protected Matriz getGlobalVector(Matriz vector){
         if (parent != null){
-            Matriz t =  origen.producto(vector);
+            Matriz t =  getVectorTo(vector);
             return parent.getGlobalVector(t);
         }
         else
             return vector;  
+    }
+    
+    /**
+     * Retorna el vector desde el punto TCP del nodo hacia el punto pasado
+     * @param vector punto de destino
+     * @return Vector desde TPC hacia el punto
+     */
+    public Matriz getVectorTo(Matriz vector){
+        return origen.producto(vector);
     }
     
     /**
