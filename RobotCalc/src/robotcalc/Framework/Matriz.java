@@ -46,6 +46,30 @@ public class Matriz {
         }
     }
     
+    public double X(){
+        if (cCount == 1 && (rCount == 3 || rCount == 4)){
+            return matriz[0][0];
+        }
+        else
+            return 0;
+    }
+
+    public double Y(){
+        if (cCount == 1 && (rCount == 3 || rCount == 4)){
+            return matriz[1][0];
+        }
+        else
+            return 0;
+    }
+
+    public double Z(){
+        if (cCount == 1 && (rCount == 3 || rCount == 4)){
+            return matriz[2][0];
+        }
+        else
+            return 0;
+    }
+    
     /**
      * Constructor de copia
      * @param B Matriz a duplicar
@@ -86,7 +110,7 @@ public class Matriz {
         {
             Matriz salida = new Matriz(rCount, 1);
             for (int i=0;i<rCount;i++)
-                salida.setValue(col, 0, matriz[i][col]); 
+                salida.setValue(i, 0, matriz[i][col]); 
             return salida;
         }
     }

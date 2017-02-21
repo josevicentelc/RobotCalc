@@ -241,7 +241,26 @@ public class Nodo {
      * @return matriz con los valores del origen de coordenadas
      */
     public Matriz getCoordenadas(){
-        return origen.getCol(4);
+        return origen.getCol(3);
     }    
     
+    /**
+     * Retorna el producto de todas las matrices de transformacion homogeneas
+     * hasta llegar a la base del origen de coordenadas
+     * @return Matriz de transformacion del mundo hacia el origen de coordenadas del nodo
+     */
+    public MatrizTransformacion getMatrizTransformacionGlobal(){
+        if (parent == null){
+            //System.out.println("Soy padre, retorno mi matriz");
+            //System.out.println(origen.toString());
+            return origen;
+        }
+        else{
+            //System.out.println("Soy hijo, retorno mi matriz");
+            MatrizTransformacion C = parent.getMatrizTransformacionGlobal().producto(origen);
+            //System.out.println(C.toString());
+            return C;
+            
+        }
+    }
 }

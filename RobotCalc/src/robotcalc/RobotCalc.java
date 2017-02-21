@@ -8,6 +8,7 @@ package robotcalc;
 import robotcalc.Framework.Matriz;
 import robotcalc.Framework.MatrizTransformacion;
 import robotcalc.Framework.Nodo;
+import robotcalc.Framework.RoboticSystem;
 
 /**
  *
@@ -27,8 +28,17 @@ public class RobotCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        calculaVectorRotado();
+        RoboticSystem rs = new RoboticSystem(6);
+        rs.trasladarX(0, 10);
+        
+        System.out.println(rs.getPos(5).toString());
+        rs.rotarZ(2, 90);
+        
+        System.out.println(rs.getPos(5).X());
+        System.out.println(rs.getPos(5).Y());
+        System.out.println(rs.getPos(5).Z());
     }
+
     
     public static void calculaVectorTrasladado(){
         Nodo n1 = new Nodo();

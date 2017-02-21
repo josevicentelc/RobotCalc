@@ -28,6 +28,16 @@ public class MatrizTransformacion extends Matriz{
     }
     
     /**
+     * Constructor de copia
+     * @param B Matriz de transformacion a duplicar
+     */
+    public MatrizTransformacion(Matriz B){
+        super(B);
+    }
+    
+    
+    
+    /**
      * Traslada el origen de coordenadas en el eje X en un incremento indicado por el parametro
      * @param x Cantidad a incrementar
      */
@@ -35,6 +45,24 @@ public class MatrizTransformacion extends Matriz{
         matriz[0][3] += x;
     }
 
+    /**
+     * Retorna la matriz de transformacion resultante de hacer el producto de esta matriz por la pasada por parametros A*B
+     * @param otra Matriz B
+     * @return Producto de las dos matrices
+     */
+    public MatrizTransformacion producto(MatrizTransformacion otra){
+       // System.out.println("Producto de la matriz");
+        //System.out.println(toString());
+        //System.out.println(" X ");
+        //System.out.println(otra.toString());
+
+        Matriz m = super.producto((Matriz)otra);
+        //System.out.println(" = ");
+        //System.out.println(m.toString());
+        
+        return new MatrizTransformacion(m);
+    }
+    
     /**
      * Traslada el origen de coordenadas en el eje Y en un incremento indicado por el parametro
      * @param y Cantidad a incrementar
