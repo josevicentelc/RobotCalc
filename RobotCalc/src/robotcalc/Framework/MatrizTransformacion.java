@@ -149,6 +149,20 @@ public class MatrizTransformacion extends Matriz{
     }
     
     /**
+     * Retorna una matriz de transformacion que es inversa a la actual si es que es invertible
+     * En caso de no serlo retorna una matriz vacia
+     * @return Matriz inversa
+     */
+    @Override
+    public MatrizTransformacion inversa(){
+        if (!esInvertible())
+            return new MatrizTransformacion();
+        else
+            return new MatrizTransformacion(super.inversa());
+    }
+
+    
+    /**
      * Rota el origen de coordenadas sobre los tres ejes los grados indicados
      * @param a rotacion en X
      * @param b rotacion en Y

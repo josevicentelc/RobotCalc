@@ -209,11 +209,17 @@ public class Matriz {
      * @return Suma de this+B
      */
     public Matriz suma(Matriz B){
+        System.out.println( "    SUMA DE MATRICES" );
+        System.out.println(toString());
+        System.out.println(B.toString());
+        
         if (rCount == B.rowCount() && cCount == B.colCount()){
             Matriz C = new Matriz(rCount, cCount);
             for (int i=0;i<rCount;i++)
                 for (int j=0;j<cCount;j++)
                     C.setValue(i, j, matriz[i][j] + B.getValue(i, j));
+            System.out.println("=");
+            System.out.println(C.toString());
             return C;
         }
         else
@@ -261,8 +267,119 @@ public class Matriz {
      * @return Matriz inversa a this
      */
     public Matriz inversa(){
-        System.err.println("La funcion Matriz inversa no esta implementada");
-        return new Matriz(this);
+        double determinante = determinante();
+        if (determinante==0)
+            return new Matriz(0, 0);
+        else
+            return traspuesta().adjunta().producto(1/determinante);
+    }
+
+    /**
+     * Obtiene una matrz tal que caja elemento i,j es el determinante 
+     * de eliminar la fila i,j
+     * @return Matriz adjunta
+     */
+    public Matriz adjunta(){
+        if (rCount != cCount) return new Matriz(0,0);
+        Matriz salida = new Matriz(rCount, cCount);
+        for (int i=0;i<rCount;i++)
+            for (int j=0;j<cCount;j++){
+                salida.setValue(i, j, adjunta(i, j).determinante()  );
+                // si el elemento i,j tiene un i+j impar, se invierte su signo
+                if (  (i+j)%2 != 0  ) salida.setValue(i, j, salida.getValue(i, j) * -1);
+            }
+        return salida;
+    }
+    
+    /**
+     * Calcula el determinante de la matriz si lo tiene
+     * @return Determinante de la matriz si lo tiene
+     */
+    public double determinante(){
+        if (rCount != cCount) return 0;
+        if (rCount==1) return matriz[0][0];
+        if (rCount==2){
+            return matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
+        }
+        if (rCount == 3){
+            //Metodo de sarrus
+            double det1 = 0;
+            double det2 = 0;
+            det1 += matriz[0][0] * matriz[1][1] * matriz[2][2];
+            det1 += matriz[1][0] * matriz[2][1] * matriz[0][2];
+            det1 += matriz[2][0] * matriz[0][1] * matriz[1][2];
+            det2 += matriz[0][2] * matriz[1][1] * matriz[2][0];
+            det2 += matriz[1][2] * matriz[2][1] * matriz[0][0];
+            det2 += matriz[2][2] * matriz[0][1] * matriz[1][0];
+            return det1 - det2;
+        }else{
+            //Determinante es el determinante de las matrices adjuntas
+            double salida=0;
+            boolean suma = true;
+            for (int i=0;i<rCount;i++){
+               if (suma){
+                salida += adjunta(i,0).determinante() * matriz[i][0];
+                suma = false;
+               }else{
+                salida -= adjunta(i,0).determinante() * matriz[i][0];
+                suma = true;
+               }
+            }
+            return salida;
+        }
+    }
+
+    /**
+     * Retorna la matriz resultante de multiplicar la matriz por un valor real
+     * @param d valor real
+     * @return Matriz producto 
+     */
+    public Matriz producto(double d){
+        Matriz salida = new Matriz(rCount, cCount);
+        for (int i=0;i<rCount;i++)
+            for (int j=0;j<cCount;j++)
+                salida.setValue(i, j, matriz[i][j] * d);
+        return salida;
+    }
+            
+    
+    
+    /**
+     * Retorna la matriz adjunta que se obtiene al eliminar la fila y columna indicadas
+     * @param fila Fila a eliminar
+     * @param columna Columna a eliminar
+     * @return Matriz adjunta
+     */
+    public Matriz adjunta(int fila, int columna){
+        //Si alguno de los valores esta fuera de la matriz, retorno una matriz que es copia de esta
+        if (fila >= rCount || columna >= cCount || fila < 0 || columna < 0) return new Matriz(this);
+        
+        //Si ambos estan dentro, obtengo la matriz resultante de eliminar dicha fila y columna
+        Matriz salida = new Matriz(rCount-1, cCount-1);
+        for (int i=0;i<rCount;i++)
+            if (i!= fila)
+                for (int j=0;j<cCount;j++){
+                    if (j!= columna){
+                        int filaDestino;
+                        if (i<fila) filaDestino = i;
+                        else    filaDestino = i-1;
+                        int colDestino;
+                        if (j<columna) colDestino = j;
+                        else    colDestino = j-1;
+                        salida.setValue(filaDestino, colDestino, matriz[i][j]);
+                    }
+                }
+        return salida;
+    }
+    
+    /**
+     * Retorna True si existe una matriz B para esta matriz A tal que A*B = Identidad
+     * @return True si es invertible 
+     */
+    public boolean esInvertible(){
+        if (rCount != cCount || rCount == 0) return false;
+        if (determinante()==0) return false;
+        return true;
     }
     
     /**
@@ -294,5 +411,10 @@ public class Matriz {
         return salida;
     }
 
+    
+    
+
+    
+    
     
 }

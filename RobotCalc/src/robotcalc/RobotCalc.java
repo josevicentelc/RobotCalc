@@ -24,19 +24,52 @@ public class RobotCalc {
 
     static MatrizTransformacion mt;
     
+    public static void testDeterminante(){
+        Matriz v = new Matriz(3,3);
+        v.setValue(0, 0, 1);v.setValue(0, 1, 2);v.setValue(0, 2, -1);
+        v.setValue(1, 0, 1);v.setValue(1, 1, 3);v.setValue(1, 2, 4);
+        v.setValue(2, 0, -1);v.setValue(2, 1, 4);v.setValue(2, 2, 0);
+        System.out.println(v.determinante());
+
+        Matriz m = new Matriz(4, 4);
+        m.setValue(0, 0, 1);m.setValue(0, 1, -1);m.setValue(0, 2, 2);m.setValue(0, 3, 3);
+        m.setValue(1, 0, 2);m.setValue(1, 1, 1);m.setValue(1, 2, 0);m.setValue(1, 3, 1);
+        m.setValue(2, 0, 3);m.setValue(2, 1, -1);m.setValue(2, 2, 1);m.setValue(2, 3, 2);
+        m.setValue(3, 0, 2);m.setValue(3, 1, -1);m.setValue(3, 2, 0);m.setValue(3, 3, 1);
+        System.out.println(m.determinante());
+
+        m.setValue(0, 0, 2);m.setValue(0, 1, 3);m.setValue(0, 2, -2);m.setValue(0, 3, 4);
+        m.setValue(1, 0, 3);m.setValue(1, 1, -2);m.setValue(1, 2, 1);m.setValue(1, 3, 2);
+        m.setValue(2, 0, 3);m.setValue(2, 1, 2);m.setValue(2, 2, 3);m.setValue(2, 3, 4);
+        m.setValue(3, 0, -2);m.setValue(3, 1, 4);m.setValue(3, 2, 0);m.setValue(3, 3, 5);
+        System.out.println(m.determinante());
+    }
+
+    public static void testInversa(){
+        Matriz v = new Matriz(3,3);
+        v.setValue(0, 0, 2);v.setValue(0, 1, 0);v.setValue(0, 2, 1);
+        v.setValue(1, 0, 3);v.setValue(1, 1, 0);v.setValue(1, 2, 0);
+        v.setValue(2, 0, 5);v.setValue(2, 1, 1);v.setValue(2, 2, 1);
+        System.out.println(v.inversa().toString());
+    }
+    
+    
+    public static void testCoordenadas(){
+        RoboticSystem rs = new RoboticSystem(6);
+        rs.trasladarX(0, 10);
+        System.out.println(rs.getPos(5).toString());
+        rs.rotarZ(2, 90);
+        System.out.println(rs.getPos(5).X());
+        System.out.println(rs.getPos(5).Y());
+        System.out.println(rs.getPos(5).Z());
+    }
+
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        RoboticSystem rs = new RoboticSystem(6);
-        rs.trasladarX(0, 10);
-        
-        System.out.println(rs.getPos(5).toString());
-        rs.rotarZ(2, 90);
-        
-        System.out.println(rs.getPos(5).X());
-        System.out.println(rs.getPos(5).Y());
-        System.out.println(rs.getPos(5).Z());
+        testInversa();
     }
 
     
