@@ -79,12 +79,19 @@ public class RobotCalc {
         System.out.println(rs.getPos(5).Z());
     }
 
+    public static void testRandom(){
+        Matriz m = new Matriz(10, 10);
+        m.random(-100, 100);
+        System.out.println(m.toString());
+        System.out.println(m.Abs().toString());
+        System.out.println(m.escalonada().toString());
+    }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testReducida();
+       testRandom();
     }
 
     

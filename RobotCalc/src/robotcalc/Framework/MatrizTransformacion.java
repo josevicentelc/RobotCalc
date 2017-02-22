@@ -213,17 +213,6 @@ public class MatrizTransformacion extends Matriz{
         eliminarImprecision();
     }
     
-    /**
-     * Si a la hora de hacer las operaciones se produce un error de precision
-     * este metodo lo redondea siempre que el error sea inferior a un margen 0.0000001
-     */
-    private void eliminarImprecision(){
-        for (int i=0;i<rCount;i++)
-           for (int j = 0;j<cCount;j++){
-               if (Math.abs(round(matriz[i][j]) - matriz[i][j]) < 0.0000001)
-                   matriz[i][j] = round(matriz[i][j]);
-           }
-    }
     
     /**
      * Metodo utilitario que redondea un flotante al entero mas proximo

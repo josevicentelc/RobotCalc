@@ -15,6 +15,8 @@
  */
 package robotcalc.Framework;
 
+import static robotcalc.Framework.MatrizTransformacion.round;
+
 /**
  *
  * @author Jose Vicente Lozano Copa
@@ -402,17 +404,26 @@ public class Matriz {
      * @return Matriz en forma de String
      */
     public String toString(){
+        return toString(2);
+    }
+
+    /**
+     * Retorna la matriz en forma de String
+     * @return Matriz en forma de String
+     */
+    public String toString(int decimales){
         String salida = "";
         if (rCount==0 || cCount == 0) return "Matriz vacia";
         
         for (int i=0;i<rCount;i++){
             for (int j=0;j<cCount;j++){
-                salida += "| "+matriz[i][j];
+                salida += "| "+ String.format("%." + decimales+"f", matriz[i][j]);
             }
             salida+=" |\n";
         }
         return salida;
     }
+
     
     /**
      * Crea una instancia de una nueva matriz que es copia de la actual
@@ -478,10 +489,24 @@ public class Matriz {
                 }
             }
         }
+        salida.eliminarImprecision();
         return salida;
     }
     
     
+    /**
+     * Si a la hora de hacer las operaciones se produce un error de precision
+     * este metodo lo redondea siempre que el error sea inferior a un margen 0.0000001
+     */
+    protected void eliminarImprecision(){
+        for (int i=0;i<rCount;i++)
+           for (int j = 0;j<cCount;j++){
+               if (Math.abs(round(matriz[i][j]) - matriz[i][j]) < 0.0000001)
+                   matriz[i][j] = round(matriz[i][j]);
+               else
+                   if (matriz[i][j] == 0) matriz[i][j] = 0;
+           }
+    }
     
     /**
      * Reordena la matriz de forma que no existan ceros en su diagonal principal
@@ -547,4 +572,35 @@ public class Matriz {
             return salida;
         }
     }
+    
+    /**
+     * Genera valores random en la matriz que estarán en el rango de los valores indicados
+     * @param min Valor minimo
+     * @param max Valor maximo
+     */
+    public void random(double min, double max){
+        //Si el minimo es mayor que el maximo, se invierten
+        if (min > max){
+            double temp = max;
+            max = min;
+            min = temp;
+        }
+        for (int i=0;i<rCount;i++)
+            for (int j=0;j<cCount;j++){
+                matriz[i][j] = Math.random() * (max-min) + min;
+            }
+    }
+    
+    /**
+     * Retorna la matriz resultante de aplicar la funcion ABS a todos los elementos de la matriz
+     * @return Matriz absoluta
+     */
+    public Matriz Abs(){
+        Matriz salida = new Matriz(this);
+        for (int i=0;i<rCount;i++)
+            for (int j=0;j<cCount;j++)
+                salida.setValue(i, j, Math.abs(matriz[i][j]));
+        return salida;
+    }
+    
 }
