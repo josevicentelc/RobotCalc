@@ -12,6 +12,7 @@
  *  - Adjunta
  *  - Inversa
  *  - Escalonada
+ *  - Reducir (Solucion de sistema de ecuaciones)
  */
 package robotcalc.Framework;
 
@@ -54,25 +55,37 @@ public class Matriz {
         }
     }
     
+    /**
+     * retorna el valor de la primera fila, ultima columna
+     * @return valor de la posicion de X
+     */
     public double X(){
-        if (cCount == 1 && (rCount == 3 || rCount == 4)){
-            return matriz[0][0];
+        if (cCount > 0 && rCount >= 1){
+            return matriz[0][cCount-1];
         }
         else
             return 0;
     }
 
+    /**
+     * retorna el valor de la segunda fila, ultima columna
+     * @return Valor de la posicion de Y
+     */
     public double Y(){
-        if (cCount == 1 && (rCount == 3 || rCount == 4)){
-            return matriz[1][0];
+        if (cCount > 0 && rCount >= 2){
+            return matriz[1][cCount-1];
         }
         else
             return 0;
     }
 
+    /**
+     * retorna el valor de la segunda fila, ultima columna
+     * @return 
+     */
     public double Z(){
-        if (cCount == 1 && (rCount == 3 || rCount == 4)){
-            return matriz[2][0];
+        if (cCount > 0 && rCount >= 3){
+            return matriz[2][cCount-1];
         }
         else
             return 0;
@@ -493,6 +506,33 @@ public class Matriz {
         return salida;
     }
     
+    /**
+     * Reduce una matriz escalonada de forma que solo quedan 1 en la diagonal principal
+     * Si la matriz tiene mas columnas que filas, estas ultimas columnas seran el resultado
+     * de un sistema de ecuaciones
+     * @return Matriz reducida
+     */
+    public Matriz reducir(){
+        Matriz m = new Matriz(this);
+        m = m.escalonada();
+        //Teniendo una matriz escalonada, voy de abajo a arriba eliminando terminos
+        for (int i=m.rCount-1;i>0;i--){
+            //usando el 1 del eelemento i,i, elimino los terminos de las casillas i-1, 
+            for (int i2= i-1;i2>=0;i2--){
+                //Obtengo la linea con el termino en 1
+                //y la multiplico por el valor que deseo eliminar
+                Matriz linea  = m.getRow(i).producto(m.getValue(i2, i));
+                
+                //si el signo es igual, las resto
+                if ((linea.getValue(0, i) >0 && m.getValue(i2, i) > 0) || (linea.getValue(0, i) <0 && m.getValue(i2, i) < 0))
+                    m.setRow(i2, m.getRow(i2).resta(linea));
+                else
+                    m.setRow(i2, m.getRow(i2).suma(linea));
+                //si es distinto, las sumo
+            }
+        }
+        return m;
+    }
     
     /**
      * Si a la hora de hacer las operaciones se produce un error de precision

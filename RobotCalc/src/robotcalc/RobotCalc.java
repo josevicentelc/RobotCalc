@@ -46,9 +46,9 @@ public class RobotCalc {
     }
 
     public static void testReducida(){
-        double[] ma = {1, -2, 3, 9};
-        double[] mb = {-1, 3, 0, -4};
-        double[] mc = {2, -5, 5, 17};
+        double[] ma = {2, 4, 6, 18};
+        double[] mb = {4, 5, 6, 24};
+        double[] mc = {3, 1, -2, 4};
         
         Matriz mm = new Matriz(3, 4);
         mm.setRow(0, ma);
@@ -56,6 +56,7 @@ public class RobotCalc {
         mm.setRow(2, mc);
         System.out.println(mm.toString());
         System.out.println(mm.escalonada().toString());
+        System.out.println(mm.reducir().toString());
         
         
     }
@@ -91,7 +92,9 @@ public class RobotCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       testRandom();
+       Matriz m = new Matriz(25, 26);
+       m.random(-50, 50);
+       System.out.println(m.reducir().toString());
     }
 
     
