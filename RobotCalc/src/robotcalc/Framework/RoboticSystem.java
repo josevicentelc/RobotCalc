@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package robotcalc.Framework;
 
 import java.util.ArrayList;
@@ -13,6 +9,7 @@ import java.util.List;
  * @author Jose Vicente
  */
 public class RoboticSystem {
+    
     
     private int gradosLibertad = 0;
     
@@ -82,15 +79,15 @@ public class RoboticSystem {
             return nodos.get(i);
     }
     
-    public String getVectorTo(int nodo, double x, double y, double z){
+    public Matriz getVectorTo(int nodo, double x, double y, double z){
         if (nodo >= 0 && nodo < gradosLibertad){
-            return nodos.get(nodo).getGlobalVector(x, y, z).toString();
+            return nodos.get(nodo).getGlobalVector(x, y, z);
         }
-        return "";
+        return new Matriz(0,0);
     }
 
-    public String getVectorTo(double x, double y, double z){
-        return nodos.get(gradosLibertad-1).getGlobalVector(x, y, z).toString();
+    public Matriz getVectorTo(double x, double y, double z){
+        return nodos.get(gradosLibertad-1).getGlobalVector(x, y, z);
     }
     
     public MatrizTransformacion getMatrizHomogenea(int nodo){

@@ -99,21 +99,10 @@ public class Nodo {
             Matriz nuevoOrigen = getGlobalVector(parent.getCoordenadas());
             parent.quitarHijo(this);
             parent = null;
-            setPosicionAbsoluta(nuevoOrigen.getValue(0, 0), nuevoOrigen.getValue(1, 0), nuevoOrigen.getValue(2, 0));
+            setTCP(nuevoOrigen.getValue(0, 0), nuevoOrigen.getValue(1, 0), nuevoOrigen.getValue(2, 0));
         }
     }
-    
-    /**
-     * Establece de manera absoluta las coordenadas de traslacion del origen de coordenadas
-     * @param x Traslacion en X
-     * @param y Traslacion en Y
-     * @param z Traslacion en Z
-     */
-    public void setPosicionAbsoluta(double x, double y, double z){
-        origen.setX(x);
-        origen.setY(y);
-        origen.setZ(z);
-    }
+   
     
     /**
      * Añade el nodo pasado como un nodo hijo

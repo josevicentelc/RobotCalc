@@ -3,9 +3,15 @@
  * Dispone de metodos para calculo matricial
  * 
  *  - Producto A*B
+ *  - Producto Real*A
+ *  - Division A/Real
  *  - Suma A+B
  *  - Resta A-B
+ *  - Determinante
  *  - Traspuesta T(A)
+ *  - Adjunta
+ *  - Inversa
+ *  - Escalonada
  */
 package robotcalc.Framework;
 
@@ -127,7 +133,7 @@ public class Matriz {
         {
             Matriz salida = new Matriz(1, cCount);
             for (int i=0;i<cCount;i++)
-                salida.setValue(1, i, matriz[row][i]); 
+                salida.setValue(0, i, matriz[row][i]); 
             return salida;
         }
     }
@@ -209,17 +215,11 @@ public class Matriz {
      * @return Suma de this+B
      */
     public Matriz suma(Matriz B){
-        System.out.println( "    SUMA DE MATRICES" );
-        System.out.println(toString());
-        System.out.println(B.toString());
-        
         if (rCount == B.rowCount() && cCount == B.colCount()){
             Matriz C = new Matriz(rCount, cCount);
             for (int i=0;i<rCount;i++)
                 for (int j=0;j<cCount;j++)
                     C.setValue(i, j, matriz[i][j] + B.getValue(i, j));
-            System.out.println("=");
-            System.out.println(C.toString());
             return C;
         }
         else
@@ -341,7 +341,22 @@ public class Matriz {
                 salida.setValue(i, j, matriz[i][j] * d);
         return salida;
     }
-            
+
+    /**
+     * retorna la matriz resultado de dividir todos los elementos de la matriz entre el valor indicado
+     * @param d Valor entre el cual hacer la division
+     * @return Matriz con los valores divididos
+     */
+    public Matriz division(double d){
+        Matriz salida = new Matriz(rCount, cCount);
+        if (d == 0) return salida;
+        
+        for (int i=0;i<rCount;i++)
+            for (int j=0;j<cCount;j++)
+                salida.setValue(i, j, matriz[i][j] / d);
+        return salida;
+    }
+    
     
     
     /**
@@ -412,9 +427,124 @@ public class Matriz {
     }
 
     
+    /**
+     * Retorna la Matriz parcial desde el punto de origen hasta el de destino
+     * @param filaOrigen    Fila de origen
+     * @param colOrigen     Columna de origen
+     * @param filaDestino   Fila de destino
+     * @param colDestino    Columna de destino
+     * @return SubMatriz contenida entre los puntos de origen y destino
+     */
+    public Matriz subMatriz(int filaOrigen, int colOrigen, int filaDestino, int colDestino){
+        if (filaOrigen >= filaDestino || colOrigen >= colDestino)
+            return new Matriz(0,0);
+        else{
+            Matriz m = new Matriz(filaDestino-filaOrigen, colDestino-colOrigen);
+            for (int i=filaOrigen;i<=filaDestino;i++)
+                for (int j=colOrigen;j<=colDestino;j++){
+                    m.setValue(i-filaOrigen, j-colOrigen, matriz[i][j]);
+                }
+            return m;
+        }
+    }
     
-
+    /**
+     * Genera una matriz escalonada a partir de esta matriz que tiene unos en su diagonal
+     * principal y ceros debajo de esta
+     * @return Matriz escalonada
+     */
+    public Matriz escalonada(){
+        Matriz salida = reordenarParaReducir();
+        
+        for (int j=0;j<salida.rCount;j++){
+            //Primero hago 1 en la diagonal
+            if (salida.getValue(j, j) != 0) salida.setRow(j, salida.getRow(j).division(salida.getValue(j, j)));
+            for (int j2=j+1;j2<salida.rCount;j2++){
+             
+                //Ahora recorro en J2 todas las filas inferiores a J y les resto Nveces la fila actual
+                //donde N es el valor de la columna J para la fila J2
+                Matriz N = salida.getRow(j).producto(salida.getValue(j2, j));
+                
+                //Si tienen el mismo signo las resto, si son diferentes las sumo
+                if ((N.getValue(0, j) > 0 && salida.getValue(j2, j) > 0) 
+                        ||
+                    (N.getValue(0, j) < 0 && salida.getValue(j2, j) < 0 ))
+                {
+                    salida.setRow(j2,  salida.getRow(j2).resta(N) );
+                }
+                else
+                {
+                    salida.setRow(j2,  salida.getRow(j2).suma(N) );
+                }
+            }
+        }
+        return salida;
+    }
     
     
     
+    /**
+     * Reordena la matriz de forma que no existan ceros en su diagonal principal
+     * @return Matriz reordenada lista para escalonar
+     */
+    protected Matriz reordenarParaReducir(){
+        Matriz m = new Matriz(this);
+        for (int i=0;i<rCount;i++){
+            if (m.getValue(i, i) == 0 && i< rCount-1)
+                m = m.intercambioFilas(i, i+1);
+        }
+        return m;
+    }
+    
+    /**
+     * Establece todos los valores de la fila a los valorees de la primera fila de la matriz pasada
+     * @param fila  Fila a la que se establecen los valores
+     * @param m     MAtriz de la que extraer los valores
+     */
+    public void setRow(int fila, Matriz m){
+        if (fila >= 0 && fila < rCount){    //La fila elegida debe estar dentro de la matriz
+            if (m.cCount >= cCount){        //La Matriz de valores debe contener suficientes valores
+                if (m.rCount > 0){          
+                    for (int j=0;j<cCount;j++)
+                        matriz[fila][j] = m.getValue(0, j);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Establece todos los valores de la fila a los valorees del array, si no hay suficientes valores se establecera un 0
+     * @param fila  Fila a la que se establecen los valores
+     * @param m     Array de doubles
+     */
+    public void setRow(int fila, double[] m){
+        if (fila >= 0 && fila < rCount){    //La fila elegida debe estar dentro de la matriz
+            for (int j=0;j<cCount;j++)
+                if (j<m.length) 
+                    matriz[fila][j] = m[j];
+                else
+                    matriz[fila][j] = 0;
+        }
+    }
+    
+    
+    /**
+     * Retorna la matriz resultante de intercambiar las filas indicadas
+     * @param fila1 Fila 1
+     * @param fila2 Fila 2
+     * @return Matriz con las filas intercambiadas
+     */
+    public Matriz intercambioFilas(int fila1, int fila2){
+        if (fila1 >= rCount || fila2 >= rCount || fila1 <0 || fila2 <0)
+            return new Matriz(this);
+        else
+        {
+            Matriz salida = new Matriz(this);
+            Matriz m1 = salida.getRow(fila1);
+            Matriz m2 = salida.getRow(fila2);
+            salida.setRow(fila1, m2);
+            salida.setRow(fila2, m1);
+            return salida;
+        }
+    }
 }

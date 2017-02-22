@@ -45,6 +45,21 @@ public class RobotCalc {
         System.out.println(m.determinante());
     }
 
+    public static void testReducida(){
+        double[] ma = {1, -2, 3, 9};
+        double[] mb = {-1, 3, 0, -4};
+        double[] mc = {2, -5, 5, 17};
+        
+        Matriz mm = new Matriz(3, 4);
+        mm.setRow(0, ma);
+        mm.setRow(1, mb);
+        mm.setRow(2, mc);
+        System.out.println(mm.toString());
+        System.out.println(mm.escalonada().toString());
+        
+        
+    }
+    
     public static void testInversa(){
         Matriz v = new Matriz(3,3);
         v.setValue(0, 0, 2);v.setValue(0, 1, 0);v.setValue(0, 2, 1);
@@ -69,7 +84,7 @@ public class RobotCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testInversa();
+        testReducida();
     }
 
     
