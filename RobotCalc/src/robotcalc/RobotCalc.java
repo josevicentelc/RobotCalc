@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package robotcalc;
 
+import Viwer.Display;
 import robotcalc.Framework.Matriz;
 import robotcalc.Framework.MatrizTransformacion;
 import robotcalc.Framework.Nodo;
@@ -15,6 +12,17 @@ import robotcalc.Framework.RoboticSystem;
  * @author user
  */
 public class RobotCalc {
+    
+    static float[] v1 = { 
+        -0.5f, -0.5f, 0f,
+        -0.5f, 0.4f, 0f,
+        0.4f, -0.5f, 0f};
+        
+    static float[] v2 = {
+        -0.4f, 0.5f, 0f,
+        0.6f, -0.5f, 0f,
+        0.5f, 0.5f, 0f };
+
     
     static Matriz a;
     
@@ -92,9 +100,10 @@ public class RobotCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Matriz m = new Matriz(25, 26);
-       m.random(-50, 50);
-       System.out.println(m.reducir().toString());
+      //testRotar();
+      Display D = Display.createDisplay(1024, 768, "Pruebas");
+      D.addModel(v1);
+      
     }
 
     
@@ -179,25 +188,25 @@ public class RobotCalc {
     public static void init(){
         a = new Matriz(3, 3);
         a.setValue(0, 0, 2);
-        a.setValue(0, 1, 0);
+        a.setValue(0, 1, 2);
         a.setValue(0, 2, 1);
         a.setValue(1, 0, 3);
-        a.setValue(1, 1, 0);
-        a.setValue(1, 2, 0);
+        a.setValue(1, 1, 5);
+        a.setValue(1, 2, -1);
         a.setValue(2, 0, 5);
         a.setValue(2, 1, 1);
         a.setValue(2, 2, 1);
         
         b = new Matriz(3, 3);
         b.setValue(0, 0, 1);
-        b.setValue(0, 1, 0);
+        b.setValue(0, 1, 8);
         b.setValue(0, 2, 1);
         b.setValue(1, 0, 1);
         b.setValue(1, 1, 2);
         b.setValue(1, 2, 1);
         b.setValue(2, 0, 1);
         b.setValue(2, 1, 1);
-        b.setValue(2, 2, 0);
+        b.setValue(2, 2, -3);
 
         b2 = new Matriz(3, 1);
         b2.setValue(0, 0, 1);
