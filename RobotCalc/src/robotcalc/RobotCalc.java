@@ -2,6 +2,7 @@
 package robotcalc;
 
 import Viwer.Display;
+import Viwer.Modelo;
 import robotcalc.Framework.Matriz;
 import robotcalc.Framework.MatrizTransformacion;
 import robotcalc.Framework.Nodo;
@@ -20,8 +21,8 @@ public class RobotCalc {
         
     static float[] v2 = {
         -0.4f, 0.5f, 0f,
-        0.6f, -0.5f, 0f,
-        0.5f, 0.5f, 0f };
+        0.6f, -0.5f, -0.2f,
+        0.5f, 0.5f, 0.5f };
 
     
     static Matriz a;
@@ -101,8 +102,19 @@ public class RobotCalc {
      */
     public static void main(String[] args) {
       //testRotar();
-      Display D = Display.createDisplay(1024, 768, "Pruebas");
-      D.addModel(v1);
+      Display D = new Display(800, 600, "Hola");
+      D.run();
+      Modelo a = D.addModel(v1);
+      Modelo b = D.addModel(v2);
+      
+      for (int i=0;i<1000;i++){
+          D.prepare();
+          D.render(a);
+          D.render(b);
+          D.flush();
+          System.out.println("" + i);
+      }
+      D.closeDisplay();
       
     }
 

@@ -49,17 +49,11 @@ import sun.awt.Mutex;
  *
  * @author Josev
  */
-public class Display extends Thread {
+public class Display  {
 
-    private Mutex mutex = new Mutex();
-    
     private int width = 0;
-    
     private int height = 0;
-    
-    float FondoR = 0.5f;
-    float FondoG = 0.5f;
-    float FondoB = 0.5f;
+
     
     String titulo = "";
 
@@ -69,47 +63,25 @@ public class Display extends Thread {
 
     private List<Modelo> modelos = new ArrayList<Modelo>();
     
-    private boolean running = false;
-    
-
     
     public Display(int w, int h, String t){
         width = w;
         height = h;
         titulo = t;
+
     }
 
-    public void addModel(float[] m){
-        while (!running){
-            System.out.println("Espero");
-            try{sleep(1);}catch(Exception e){}
-        }
-            
-        mutex.lock();
-        System.out.println("Añado");
-        Modelo model = loader.loadToVao(m);
-        System.out.println("Tengo modelo");
-        modelos.add(model);
-        System.out.println("Modelo añadido");
-        mutex.unlock();
+    
+    public Modelo addModel(float[] m){
+        return loader.loadToVao(m);
     }
     
     private void loop() {
-        GL.createCapabilities();
-        running = true;
-        System.out.println("Runiiiiiing");
-
         while ( !glfwWindowShouldClose(window) ) {
-            mutex.lock();
-            System.out.println("1");
             prepare();
-            System.out.println("2");
             for (Modelo m:modelos)
                 render(m);
-            System.out.println("3");
             flush();
-            System.out.println("4");
-            mutex.unlock();
         }
         closeDisplay();
     }
@@ -118,11 +90,8 @@ public class Display extends Thread {
     
     public void run() {
         init();
-	loop();
-	glfwFreeCallbacks(window);
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	glfwSetErrorCallback(null).free();
+        GL.createCapabilities();
+        //loop();
     }
 
     private void init() {
@@ -160,17 +129,17 @@ public class Display extends Thread {
 	}
 
 
-        private void prepare(){
-            glClearColor(FondoR, FondoG, FondoB, 0.0f);
+        public void prepare(){
+            glClearColor(0.4f, 0.4f, 0.4f, 0.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
         }
 
-        private void flush(){
+        public void flush(){
             glfwSwapBuffers(window); 
             glfwPollEvents();
         }
         
-        private void render(Modelo m){
+        public void render(Modelo m){
             GL30.glBindVertexArray(m.getVaoId());
             GL20.glEnableVertexAttribArray(0);
             GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, m.getVertexCount());
@@ -178,16 +147,15 @@ public class Display extends Thread {
             GL30.glBindVertexArray(0);
         }
         
-        private void closeDisplay(){
+        public void closeDisplay(){
             loader.cleanUp();
+            glfwFreeCallbacks(window);
+            glfwDestroyWindow(window);
+            glfwTerminate();
+            glfwSetErrorCallback(null).free();
         }
         
         
-	public static Display createDisplay(int w, int h, String title) {
-            Display d = new Display(w, h, title);
-            d.start();
-            return d;
-	}
     
     
     

@@ -5,7 +5,7 @@ package Viwer;
  *
  * @author Josev
  */
-class Modelo {
+public class Modelo {
     
     private int vaoId;
     
