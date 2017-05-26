@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1495816033 source:c:\users\user\fibonachi\testopenglcpp\main.c
+	<windows.h>
+
+1495819000 source:c:\users\user\fibonachi\testopenglcpp\src\ventana.cpp
+	"Ventana.h"
+	<windows.h>
+	<gl/gl.h>
+
+1495818614 c:\users\user\fibonachi\testopenglcpp\include\ventana.h
+	<windows.h>
+	<string>
+	<gl/gl.h>
+	<iostream>
+
+1495816144 source:c:\users\user\fibonachi\testopenglcpp\src\glwindow.cpp
+	"GlWindow.h"
+
+1495816144 c:\users\user\fibonachi\testopenglcpp\include\glwindow.h
+
+1495818789 source:c:\users\user\fibonachi\testopenglcpp\main.cpp
+	<windows.h>
+	"GlWindow.h"
+	"Ventana.h"
+	<iostream>
+
