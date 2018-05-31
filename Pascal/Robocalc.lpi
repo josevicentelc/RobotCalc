@@ -27,7 +27,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="5">
       <Unit0>
         <Filename Value="Robocalc.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -40,10 +40,18 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="urobocalcfw.pas"/>
+        <Filename Value="utmatriz.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uRoboCalcFw"/>
+        <UnitName Value="uTmatriz"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="utmatriztransformacion.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="utnodo.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
