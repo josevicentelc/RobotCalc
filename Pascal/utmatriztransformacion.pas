@@ -31,18 +31,10 @@ type
       procedure rotarZ(z_ : double);
       function copia() : TMatrizTransformacion;
       function producto(otra : TMatrizTransformacion): TMatrizTransformacion;
+      function producto(otra : TMatriz): TMatrizTransformacion;
 
   end;
 
-  TNodo = class(TObject)
-    private
-    public
-  end;
-
-  TRobot = class(TObject)
-    private
-    public
-  end;
 
 implementation
 
@@ -183,6 +175,15 @@ begin
      m := inherited producto( (otra as TMatriz)  );
      result := TMatrizTransformacion.createFromMatriz(m);
 end;
+
+function TMatrizTransformacion.producto(otra : TMatriz): TMatrizTransformacion;
+var
+  m : TMatriz;
+begin
+     m := inherited producto( otra  );
+     result := TMatrizTransformacion.createFromMatriz(m);
+end;
+
 
 end.
 
