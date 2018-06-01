@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="7">
+    <Units Count="9">
       <Unit0>
         <Filename Value="Robocalc.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="37"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -20,10 +20,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="44"/>
-        <CursorPos X="26" Y="69"/>
-        <UsageCount Value="33"/>
+        <TopLine Value="102"/>
+        <CursorPos Y="132"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,168 +30,185 @@
         <Filename Value="utmatriz.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uTmatriz"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="44"/>
-        <CursorPos X="24" Y="77"/>
-        <UsageCount Value="33"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="758"/>
+        <CursorPos X="16" Y="779"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="utmatriztransformacion.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="115"/>
         <CursorPos Y="124"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="utnodo.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="211"/>
         <CursorPos Y="218"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="utrobot.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="104"/>
         <CursorPos Y="115"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="C:\lazarus\lcl\include\customimage.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="40"/>
         <CursorPos Y="64"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="695"/>
+        <CursorPos X="22" Y="719"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\win64\classes.pp"/>
+        <UnitName Value="Classes"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="41"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit8>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="utnodo.pas"/>
-        <Caret Line="218" TopLine="210"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="597" Column="35" TopLine="580"/>
       </Position1>
       <Position2>
-        <Filename Value="utmatriztransformacion.pas"/>
-        <Caret Line="146" TopLine="135"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="132" Column="30" TopLine="102"/>
       </Position2>
       <Position3>
         <Filename Value="utmatriz.pas"/>
-        <Caret Line="32" Column="21" TopLine="12"/>
+        <Caret Line="12" Column="36" TopLine="5"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="67" Column="20" TopLine="56"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="13"/>
       </Position4>
       <Position5>
-        <Filename Value="utnodo.pas"/>
-        <Caret Line="40" Column="20" TopLine="25"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="132" TopLine="102"/>
       </Position5>
       <Position6>
-        <Filename Value="main.pas"/>
-        <Caret Line="67" Column="13" TopLine="40"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="591" TopLine="573"/>
       </Position6>
       <Position7>
-        <Filename Value="main.pas"/>
-        <Caret Line="69" Column="15" TopLine="50"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="595" Column="6" TopLine="586"/>
       </Position7>
       <Position8>
-        <Filename Value="utmatriz.pas"/>
-        <Caret Line="77" Column="24" TopLine="44"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="132" TopLine="102"/>
       </Position8>
       <Position9>
-        <Filename Value="main.pas"/>
-        <Caret Line="69" Column="41" TopLine="52"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="591" TopLine="584"/>
       </Position9>
       <Position10>
-        <Filename Value="main.pas"/>
-        <Caret Line="54" Column="23" TopLine="52"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="586" Column="16" TopLine="580"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="56" Column="23" TopLine="54"/>
+        <Caret Line="132" Column="35" TopLine="102"/>
       </Position11>
       <Position12>
-        <Filename Value="main.pas"/>
-        <Caret Line="70" TopLine="59"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="124" TopLine="104"/>
       </Position12>
       <Position13>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="110" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="125" TopLine="104"/>
       </Position13>
       <Position14>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="111" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="143" TopLine="126"/>
       </Position14>
       <Position15>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="114" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="144" TopLine="126"/>
       </Position15>
       <Position16>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="115" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="143" TopLine="126"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="71" TopLine="59"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="144" TopLine="126"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="68" Column="54" TopLine="62"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="130" TopLine="124"/>
       </Position18>
       <Position19>
-        <Filename Value="C:\lazarus\lcl\include\customimage.inc"/>
-        <Caret Line="46" TopLine="31"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="634" TopLine="617"/>
       </Position19>
       <Position20>
-        <Filename Value="C:\lazarus\lcl\include\customimage.inc"/>
-        <Caret Line="60" TopLine="36"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="635" TopLine="617"/>
       </Position20>
       <Position21>
-        <Filename Value="C:\lazarus\lcl\include\customimage.inc"/>
-        <Caret Line="61" TopLine="37"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="124" TopLine="106"/>
       </Position21>
       <Position22>
-        <Filename Value="C:\lazarus\lcl\include\customimage.inc"/>
-        <Caret Line="64" TopLine="40"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="125" TopLine="106"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="68" TopLine="62"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="143" TopLine="126"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="70" TopLine="62"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="144" TopLine="126"/>
       </Position24>
       <Position25>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="110" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="143" TopLine="126"/>
       </Position25>
       <Position26>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="111" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="144" TopLine="126"/>
       </Position26>
       <Position27>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="114" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="755" Column="72" TopLine="745"/>
       </Position27>
       <Position28>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="115" TopLine="104"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="201" Column="48" TopLine="192"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="71" TopLine="62"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="211" Column="28" TopLine="192"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="74" TopLine="62"/>
+        <Filename Value="utmatriz.pas"/>
+        <Caret Line="771" Column="39" TopLine="742"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

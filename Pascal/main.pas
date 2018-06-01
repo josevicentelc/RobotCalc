@@ -14,7 +14,9 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
+    Button2: TButton;
     ComboBox1: TComboBox;
+    Memo1: TMemo;
     transX: TEdit;
     transY: TEdit;
     transZ: TEdit;
@@ -32,6 +34,7 @@ type
     Label8: TLabel;
     Panel1: TPanel;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure rotXExit(Sender: TObject);
@@ -58,6 +61,7 @@ var
   I : Integer;
   nodo : TNodo;
   matriz : TMatriz;
+  a : TStringList;
 begin
 
   Image1.Canvas.Pen.color := clWhite;
@@ -121,6 +125,11 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   paintRobot();
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  memo1.Lines.text := testMatriz();
 end;
 
 end.
