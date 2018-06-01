@@ -38,12 +38,6 @@ type
          procedure rotarY(y_ : double);
          procedure rotarZ(z_ : double);
          procedure rotar(x_ : double; y_ : double; z_ : double);
-         function getTranslacionX() : double;
-         function getTranslacionY() : double;
-         function getTranslacionZ() : double;
-         function getRotacionX() : double;
-         function getRotacionY() : double;
-         function getRotacionZ() : double;
          function getGlobarVector(x_ : double; y_ : double; z_ : double): TMatriz;
          function getGlobarVector(vector : TMatriz): TMatriz;
          function getVectorTo(vector : TMatriz): TMatriz;
@@ -58,36 +52,6 @@ constructor TNodo.create();
 begin
      origen := TMatrizTransformacion.create();
      SetLength(nodos, 0);
-end;
-
-function TNodo.getTranslacionX() : double;
-begin
-     result := origen.getX();
-end;
-
-function TNodo.getTranslacionY() : double;
-begin
-     result := origen.getY();
-end;
-
-function TNodo.getTranslacionZ() : double;
-begin
-     result := origen.getZ();
-end;
-
-function TNodo.getRotacionX() : double;
-begin
-     result := origen.getRotX();
-end;
-
-function TNodo.getRotacionY() : double;
-begin
-     result := origen.getRotY();
-end;
-
-function TNodo.getRotacionZ() : double;
-begin
-     result := origen.getRotZ();
 end;
 
 constructor TNodo.create(n : TNodo);

@@ -53,29 +53,11 @@ type
            function determinante(): double;
            function producto(value : double): TMatriz;
            function division(value : double): TMatriz;
-           function getX() : double;
-           function getY() : double;
-           function getZ() : double;
   end;
 
 
 
 implementation
-
-function TMatriz.getX() : double;
-begin
-     result := matriz[0][3];
-end;
-
-function TMatriz.getY() : double;
-begin
-     result := matriz[1][3];
-end;
-
-function TMatriz.getZ() : double;
-begin
-     result := matriz[2][3];
-end;
 
 function ABS(indata : double):double;
 begin

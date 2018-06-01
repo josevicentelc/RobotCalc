@@ -10,6 +10,9 @@ uses
 type
   TMatrizTransformacion = class(TMatriz)
     private
+      angleX : double;
+      angleY : double;
+      angleZ : double;
     public
       constructor create();
       constructor create(otra : TMatrizTransformacion);
@@ -18,6 +21,7 @@ type
       procedure trasladarY(y_ : double);
       procedure trasladarZ(z_ : double);
       procedure setPosicion(x_ : double; y_ : double ; z_ : double);
+
       procedure trasladar(x_ : double; y_ : double ; z_ : double);
       function getX() : double;
       function getY() : double;
@@ -25,10 +29,15 @@ type
       procedure setX(x_ : double);
       procedure setY(y_ : double);
       procedure setZ(z_ : double);
+
       procedure rotar(x_ : double; y_ : double; z_ : double);
+      function getRotX() : double;
+      function getRotY() : double;
+      function getRotZ() : double;
       procedure rotarX(x_ : double);
       procedure rotarY(y_ : double);
       procedure rotarZ(z_ : double);
+
       function copia() : TMatrizTransformacion;
       function producto(otra : TMatrizTransformacion): TMatrizTransformacion;
       function producto(otra : TMatriz): TMatrizTransformacion;
@@ -41,17 +50,26 @@ implementation
 constructor TMatrizTransformacion.create();
 begin
      inherited create(4, 4);
+     angleX := 0;
+     angleY := 0;
+     angleZ := 0;
      setIdentidad();
 end;
 
 constructor TMatrizTransformacion.create(otra : TMatrizTransformacion);
 begin
      inherited create((otra as TMatriz));
+     angleX := 0;
+     angleY := 0;
+     angleZ := 0;
 end;
 
 constructor TMatrizTransformacion.createFromMatriz(otra : TMatriz);
 begin
      inherited create(otra);
+     angleX := 0;
+     angleY := 0;
+     angleZ := 0;
 end;
 
 
@@ -130,10 +148,26 @@ begin
   rotarZ(z_);
 end;
 
+function TMatrizTransformacion.getRotX(): double;
+begin
+  result := angleX;
+end;
+
+function TMatrizTransformacion.getRotY(): double;
+begin
+  result := angleY;
+end;
+
+function TMatrizTransformacion.getRotZ(): double;
+begin
+  result := angleZ;
+end;
+
 procedure TMatrizTransformacion.rotarX(x_ : double);
 var
   angleInRadias : double;
 begin
+     angleX:=x_;
      angleInRadias:=degtograd(x_);
      matriz[1][1] := cos(angleInRadias);
      matriz[1][2] := sin(angleInRadias) * -1;
@@ -145,6 +179,7 @@ procedure TMatrizTransformacion.rotarY(y_ : double);
 var
   angleInRadias : double;
 begin
+     angleY:=y_;
      angleInRadias:=degtograd(y_);
      matriz[0][0] := cos(angleInRadias);
      matriz[0][2] := sin(angleInRadias) * -1;
@@ -156,6 +191,7 @@ procedure TMatrizTransformacion.rotarZ(z_ : double);
 var
   angleInRadias : double;
 begin
+     angleZ:=z_;
      angleInRadias:=degtograd(z_);
      matriz[0][0] := cos(angleInRadias);
      matriz[0][1] := sin(angleInRadias) * -1;
