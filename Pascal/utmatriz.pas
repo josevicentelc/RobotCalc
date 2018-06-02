@@ -359,17 +359,17 @@ begin
           sum := true;
           for i := 0 to rCount -1 do
           begin
-          end;
              if (sum)then
                 begin
-                     result := result + adjunta(i,0).determinante() * matriz[i][0];
+                     result := result + (adjunta(i,0).determinante() * matriz[i][0]);
                      sum := false;
                 end
              else
              begin
-               result :=  result - adjunta(i,0).determinante() * matriz[i][0];
+               result :=  result - (adjunta(i,0).determinante() * matriz[i][0]);
                sum := true;
              end;
+          end;
         end;
 end;
 
@@ -985,8 +985,58 @@ begin
      a.free;
      b.free;
 
-     //Adjunta
+     //Adjunta(f,c)
+     A:=TMatriz.create(3,4);
+     A.setValue(0, 0, 1);A.setValue(0, 1, 2);A.setValue(0, 2, 3);A.setValue(0, 3, 4);
+     A.setValue(1, 0, 5);A.setValue(1, 1, 6);A.setValue(1, 2, 7);A.setValue(1, 3, 8);
+     A.setValue(2, 0, 9);A.setValue(2, 1, 10);A.setValue(2, 2, 11);A.setValue(2, 3, 12);
+     B:=A.adjunta(0, 0);
+     if (B.RowCount()<>2) or (B.ColCount()<>3) then
+        t.Add('test 36: Matriz adjunta(f, c) ha retornado una matriz de tamaño inesperado')
+     else
+     begin
+          if (B.getValue(0, 0) <> 6) or (B.getValue(0, 1) <> 7) or(B.getValue(0, 2) <> 8) or
+             (B.getValue(1, 0) <> 10) or (B.getValue(1, 1) <> 11) or(B.getValue(1, 2) <> 12) then
+             t.Add('test 37: Matriz adjunta(f, c) ha retornado una matriz con valores inesperados');
+     end;
+     A.free;
+     B.free;
 
+     //Adjunta(f,c)
+     A:=TMatriz.create(3,4);
+     A.setValue(0, 0, 1);A.setValue(0, 1, 2);A.setValue(0, 2, 3);A.setValue(0, 3, 4);
+     A.setValue(1, 0, 5);A.setValue(1, 1, 6);A.setValue(1, 2, 7);A.setValue(1, 3, 8);
+     A.setValue(2, 0, 9);A.setValue(2, 1, 10);A.setValue(2, 2, 11);A.setValue(2, 3, 12);
+     B:=A.adjunta(1, 1);
+     if (B.RowCount()<>2) or (B.ColCount()<>3) then
+        t.Add('test 38: Matriz adjunta(f, c) ha retornado una matriz de tamaño inesperado')
+     else
+     begin
+          if (B.getValue(0, 0) <> 1) or (B.getValue(0, 1) <> 3) or(B.getValue(0, 2) <> 4) or
+             (B.getValue(1, 0) <> 9) or (B.getValue(1, 1) <> 11) or(B.getValue(1, 2) <> 12) then
+             t.Add('test 39: Matriz adjunta(f, c) ha retornado una matriz con valores inesperados');
+     end;
+     A.free;
+     B.free;
+
+
+     //Adjunta
+     A:=TMatriz.create(3,3);
+     A.setValue(0, 0, 0);A.setValue(0, 1, 1);A.setValue(0, 2, 0);
+     A.setValue(1, 0, 1);A.setValue(1, 1, 0);A.setValue(1, 2, 0);
+     A.setValue(2, 0, 1);A.setValue(2, 1, 0);A.setValue(2, 2, 1);
+     B:=A.adjunta();
+     if (B.RowCount()<>3) or (B.ColCount()<>3) then
+        t.Add('test 40: Matriz adjunta ha retornado una matriz de tamaño inesperado')
+     else
+     begin
+          if (B.getValue(0, 0) <> 0) or (B.getValue(0, 1) <> -1) or(B.getValue(0, 2) <> 0) or
+             (B.getValue(1, 0) <> -1) or (B.getValue(1, 1) <> 0) or(B.getValue(1, 2) <> 1) or
+             (B.getValue(2, 0) <> 0) or (B.getValue(2, 1) <> 0) or(B.getValue(2, 2) <>  -1) then
+             t.Add('test 41: Matriz adjunta ha retornado una matriz con valores inesperados');
+     end;
+     A.free;
+     B.free;
 
 
 
@@ -994,20 +1044,20 @@ begin
         //No cuadrada            //error
         A := TMatriz.create(2,3);
         A.setIdentidad();
-        if not equals(A.determinante(),0,3) then t.Add('test 36: El determinante de una matriz no cuadrada es 0, se obtiene '+formatFloat('0.0', A.determinante()));
+        if not equals(A.determinante(),0,3) then t.Add('test 42: El determinante de una matriz no cuadrada es 0, se obtiene '+formatFloat('0.0', A.determinante()));
         A.free;
 
         //1x1
         A := TMatriz.create(1,1);
         A.setIdentidad();
-        if A.determinante() <> 1 then t.Add('test 37: El determinante de una matriz 1x1 es el valor de V(0,0) '+formatFloat('0.0', A.determinante()));
+        if A.determinante() <> 1 then t.Add('test 43: El determinante de una matriz 1x1 es el valor de V(0,0) '+formatFloat('0.0', A.determinante()));
         A.free;
 
         //2x2
         A := TMatriz.create(2,2);
         A.setValue(0,0, 1); A.setValue(0,1,2);
         A.setValue(1,0, 3); A.setValue(1,1,4);
-        if not equals(A.determinante(),-2,3) then t.Add('test 38: El determinante de una matriz 2x2 arrojo un resultado inesperado '+formatFloat('0.0', A.determinante()));
+        if not equals(A.determinante(),-2,3) then t.Add('test 44: El determinante de una matriz 2x2 arrojo un resultado inesperado '+formatFloat('0.0', A.determinante()));
         A.free;
         //3x3
 
@@ -1015,23 +1065,29 @@ begin
         A.setValue(0,0, 1); A.setValue(0,1,2); A.setValue(0,2,3);
         A.setValue(1,0, 4); A.setValue(1,1,5); A.setValue(1,2,4);
         A.setValue(2,0, 7); A.setValue(2,1,8); A.setValue(2,2,1);
-        if not equals(A.determinante(),12, 3) then t.Add('test 39: El determinante de una matriz 3x3 arrojo un resultado inesperado '+formatFloat('0.0', A.determinante()));
+        if not equals(A.determinante(),12, 3) then t.Add('test 45: El determinante de una matriz 3x3 arrojo un resultado inesperado '+formatFloat('0.0', A.determinante()));
         A.free;
 
         //NxN
         A := TMatriz.create(4,4);       //error
-        A.setValue(0,0, 1); A.setValue(0,1,-1); A.setValue(0,2,2);A.setValue(0,3,3);
-        A.setValue(1,0, 2); A.setValue(1,1,1); A.setValue(1,2,0);A.setValue(1,3,1);
-        A.setValue(2,0, 3); A.setValue(2,1,-1); A.setValue(2,2,1);A.setValue(2,3,2);
-        A.setValue(3,0, 2); A.setValue(3,1,-1); A.setValue(3,2,0);A.setValue(3,3,1);
-        if not equals(A.determinante(),-6, 3) then t.Add('test 40: El determinante de una matriz 4x4 arrojo un resultado inesperado '+formatFloat('0.0', A.determinante()));
+        A.setValue(0,0, 2); A.setValue(0,1,3); A.setValue(0,2,-2);A.setValue(0,3,4);
+        A.setValue(1,0, 3); A.setValue(1,1,-2); A.setValue(1,2,1);A.setValue(1,3,2);
+        A.setValue(2,0, 3); A.setValue(2,1, 2); A.setValue(2,2,3);A.setValue(2,3,4);
+        A.setValue(3,0,-2); A.setValue(3,1, 4); A.setValue(3,2,0);A.setValue(3,3,5);
+        if not equals(A.determinante(),-286, 3) then t.Add('test 46: El determinante de una matriz 4x4 arrojo un resultado inesperado '+formatFloat('0.0', A.determinante()));
         A.free;
 
+     A:= TMatriz.create(4,4);
+     A.setValue(0, 3, 1);
+     A.setValue(1, 3, 2);
+     A.setValue(2, 3, 3);
 
-
-     //producto A*Entero
-     //division A/entero
      //get X,Y,Z
+     if A.getX() <> 1 then t.Add('test 47: getX retorno un valor inesperado');
+     if A.getY() <> 2 then t.Add('test 48: getY retorno un valor inesperado');
+     if A.getZ() <> 3 then t.Add('test 49: getZ retorno un valor inesperado');
+
+     A.free;
 
      t.add('Fin de test TMatriz');
 
