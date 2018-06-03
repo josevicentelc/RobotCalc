@@ -5,7 +5,7 @@ unit utnodo;
 interface
 
 uses
-  Classes, SysUtils, utmatriztransformacion, uTmatriz;
+  Classes, SysUtils, utmatriztransformacion, uTmatriz, Dialogs;
 
 type
 
@@ -17,8 +17,6 @@ type
   private
          nodos : TNodoList;
          parent : TNodo;
-         origen : TMatrizTransformacion;
-
          rotx, roty, rotz : double;
          trax, tray, traz : double;
   protected
@@ -32,24 +30,27 @@ type
          procedure separarDePadre();
          procedure addNodo(n : TNodo);
          function addNodo(): TNodo;
-         function getOrigen(): TMatrizTransformacion;
-         procedure trasladarX(x_ : double);
-         procedure trasladarY(y_ : double);
-         procedure trasladarZ(z_ : double);
-         procedure trasladar(x_ : double; y_ : double; z_ : double);
+
+         procedure setX(x_ : double);
+         procedure setY(y_ : double);
+         procedure setZ(z_ : double);
+         function getX() : double;
+         function getY() : double;
+         function getZ() : double;
          procedure rotarX(x_ : double);
          procedure rotarY(y_ : double);
          procedure rotarZ(z_ : double);
          procedure rotar(x_ : double; y_ : double; z_ : double);
-         function getTranslacionX() : double;
-         function getTranslacionY() : double;
-         function getTranslacionZ() : double;
          function getRotacionX() : double;
          function getRotacionY() : double;
          function getRotacionZ() : double;
+
+
          function getGlobarVector(x_ : double; y_ : double; z_ : double): TMatriz;
          function getGlobarVector(vector : TMatriz): TMatriz;
+         function getGlobalCoordinates() : TMatriz;
          function getVectorTo(vector : TMatriz): TMatriz;
+         function getMatrizTransf() : TMatrizTransformacion;
          function getMatrizTransfGlobal() : TMatrizTransformacion;
          function getNodos() : TNodoList;
          function getCoordenadas(): TMatriz;
@@ -61,39 +62,23 @@ constructor TNodo.create();
 begin
      rotx:=0; roty:=0; rotz := 0;
      trax:=0;  tray:=0; traz := 0;
-     origen := TMatrizTransformacion.create();
      SetLength(nodos, 0);
 end;
 
-function TNodo.getTranslacionX() : double;
-begin
-     result := trax;
-end;
+function TNodo.getRotacionX() : double;        begin     result := rotx;          end;
+function TNodo.getRotacionY() : double;        begin     result := roty;          end;
+function TNodo.getRotacionZ() : double;        begin     result := rotz;          end;
+procedure TNodo.rotarX(x_ : double);           begin     rotx:=x_;                end;
+procedure TNodo.rotarY(y_ : double);           begin     roty:=y_;                end;
+procedure TNodo.rotarZ(z_ : double);           begin     rotz:=z_;                end;
 
-function TNodo.getTranslacionY() : double;
-begin
-     result := tray;
-end;
+procedure TNodo.setX(x_ : double);             begin     trax:=x_;                end;
+procedure TNodo.setY(y_ : double);             begin     tray:=y_;                end;
+procedure TNodo.setZ(z_ : double);             begin     traz:=z_;                end;
+function TNodo.getX() : double;     begin     result := trax;          end;
+function TNodo.getY() : double;     begin     result := tray;          end;
+function TNodo.getZ() : double;     begin     result := traz;          end;
 
-function TNodo.getTranslacionZ() : double;
-begin
-     result := traz;
-end;
-
-function TNodo.getRotacionX() : double;
-begin
-     result := trax;
-end;
-
-function TNodo.getRotacionY() : double;
-begin
-     result := tray;
-end;
-
-function TNodo.getRotacionZ() : double;
-begin
-     result := traz;
-end;
 
 constructor TNodo.create(n : TNodo);
 var
@@ -101,7 +86,6 @@ var
 begin
      rotx:=0; roty:=0; rotz := 0;
      trax:=0;  tray:=0; traz := 0;
-     origen := n.getOrigen().copia();
      SetLength(nodos, 0);
      for I := 0 to length(n.getNodos()) -1 do
      begin
@@ -114,9 +98,7 @@ constructor TNodo.create(x_ : double; y_ : double; z_ : double);
 begin
      rotx:=0; roty:=0; rotz := 0;
      trax:=0;  tray:=0; traz := 0;
-   origen := TMatrizTransformacion.create;
-   SetLength(nodos, 0);
-   trasladar(x_, y_, z_);
+     SetLength(nodos, 0);
 end;
 
 procedure TNodo.setParent(n : TNodo);
@@ -130,9 +112,6 @@ begin
      trax:=x_;
      tray:=y_;
      traz:=z_;
-     origen.setX(x_);
-     origen.setY(y_);
-     origen.setZ(z_);
 end;
 
 procedure TNodo.quitarHijo(n : TNodo);
@@ -185,48 +164,10 @@ begin
      result := n;
 end;
 
-function TNodo.getOrigen(): TMatrizTransformacion;
-begin
-     result := origen;
-end;
 
-procedure TNodo.trasladarX(x_ : double);
-begin
-     origen.setX(x_);
-end;
 
-procedure TNodo.trasladarY(y_ : double);
-begin
-     origen.setY(y_);
-end;
 
-procedure TNodo.trasladarZ(z_ : double);
-begin
-     origen.setZ(z_);
-end;
 
-procedure TNodo.trasladar(x_ : double; y_ : double; z_ : double);
-begin
-     origen.trasladar(x_, y_, z_);
-end;
-
-procedure TNodo.rotarX(x_ : double);
-begin
-     rotx:=x_;
-     origen.rotarX(x_);
-end;
-
-procedure TNodo.rotarY(y_ : double);
-begin
-     roty:=y_;
-     origen.rotarY(y_);
-end;
-
-procedure TNodo.rotarZ(z_ : double);
-begin
-     rotz:=z_;
-     origen.rotarz(z_);
-end;
 
 procedure TNodo.rotar(x_ : double; y_ : double; z_ : double);
 begin
@@ -236,15 +177,7 @@ begin
 end;
 
 function TNodo.getGlobarVector(x_ : double; y_ : double; z_ : double): TMatriz;
-var
-  m : TMatriz;
 begin
-     m := tMatriz.create(4, 1);
-     m.setValue(0, 0, x_);
-     m.setValue(1, 0, y_);
-     m.setValue(2, 0, z_);
-     m.setValue(3, 0, 1);
-     result := getGlobarVector(m);
 end;
 
 function TNodo.getGlobarVector(vector : TMatriz): TMatriz;
@@ -264,26 +197,48 @@ end;
 
 function TNodo.getVectorTo(vector : TMatriz): TMatriz;
 begin
-     result := (origen as TMatriz).producto(vector);
+     //result := (origen as TMatriz).producto(vector);
+end;
+
+function TNodo.getMatrizTransf() : TMatrizTransformacion;
+begin
+     result := TMatrizTransformacion.create();
+     result.setX(trax);
+     result.setY(tray);
+     result.setZ(traz);
+     result.rotar(rotx, roty, rotz);
+end;
+
+function TNodo.getGlobalCoordinates() : TMatriz;
+var
+  pos : TMatriz;
+  transf : TMatrizTransformacion;
+begin
+     pos := getCoordenadas();
+//     showMessage('Mis coordenadas');
+//     showmessage(pos.ToString());
+     transf := getMatrizTransfGlobal();
+     result := transf.producto(pos);
+     transf.free;
 end;
 
 function TNodo.getMatrizTransfGlobal() : TMatrizTransformacion;
 var
   C : TMatrizTransformacion;
 begin
-     origen := TMatrizTransformacion.create();
-     origen.setX(trax);
-     origen.setY(tray);
-     origen.setZ(traz);
-     origen.rotar(rotx, roty, rotz);
      if parent = nil then
      begin
-          result := origen;
+//          showMessage('Soy el nodo base, mi matriz de transformacion es ');
+          result := getMatrizTransf();
      end
      else
      begin
-          result :=parent.getMatrizTransfGlobal().producto(origen);
+          C := getMatrizTransf();
+          result :=parent.getMatrizTransfGlobal().producto(C);
+//          showMessage('Soy un nodo hijo, mi matriz es mi propia matriz por la de mi padre');
+          C.free;
      end;
+//     showMessage(result.ToString());
 end;
 
 function TNodo.getNodos() : TNodoList;
@@ -293,7 +248,8 @@ end;
 
 function TNodo.getCoordenadas(): TMatriz;
 begin
-     result := origen.getCol(3);
+     result := TMatriz.create(4,1);
+     result.setValue(3,0,1);
 end;
 
 end.

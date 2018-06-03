@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 281
+  Left = 277
   Height = 484
-  Top = 164
-  Width = 869
+  Top = 169
+  Width = 727
   Caption = 'RoboCalc'
   ClientHeight = 484
-  ClientWidth = 869
+  ClientWidth = 727
   OnCreate = FormCreate
   LCLVersion = '1.8.2.0'
   object Panel1: TPanel
@@ -24,14 +24,16 @@ object Form1: TForm1
       Width = 43
       OnExit = transXExit
       TabOrder = 1
+      Text = '0'
     end
     object transY: TEdit
-      Left = 54
+      Left = 72
       Height = 23
       Top = 88
       Width = 43
       OnExit = transXExit
       TabOrder = 2
+      Text = '0'
     end
     object rotX: TEdit
       Left = 5
@@ -40,22 +42,25 @@ object Form1: TForm1
       Width = 43
       OnExit = rotXExit
       TabOrder = 4
+      Text = '0'
     end
     object rotZ: TEdit
-      Left = 104
+      Left = 136
       Height = 23
       Top = 160
       Width = 43
       OnExit = rotXExit
       TabOrder = 6
+      Text = '0'
     end
     object rotY: TEdit
-      Left = 54
+      Left = 72
       Height = 23
       Top = 160
       Width = 43
       OnExit = rotXExit
       TabOrder = 5
+      Text = '0'
     end
     object Label1: TLabel
       Left = 7
@@ -82,7 +87,7 @@ object Form1: TForm1
       ParentColor = False
     end
     object Label4: TLabel
-      Left = 56
+      Left = 72
       Height = 15
       Top = 72
       Width = 6
@@ -90,7 +95,7 @@ object Form1: TForm1
       ParentColor = False
     end
     object Label5: TLabel
-      Left = 104
+      Left = 136
       Height = 15
       Top = 72
       Width = 5
@@ -106,7 +111,7 @@ object Form1: TForm1
       ParentColor = False
     end
     object Label7: TLabel
-      Left = 56
+      Left = 72
       Height = 15
       Top = 144
       Width = 6
@@ -114,7 +119,7 @@ object Form1: TForm1
       ParentColor = False
     end
     object Label8: TLabel
-      Left = 104
+      Left = 136
       Height = 15
       Top = 144
       Width = 5
@@ -127,6 +132,7 @@ object Form1: TForm1
       Top = 16
       Width = 140
       ItemHeight = 15
+      ItemIndex = 0
       Items.Strings = (
         '1'
         '2'
@@ -138,14 +144,16 @@ object Form1: TForm1
       OnChange = ComboBox1Change
       Style = csDropDownList
       TabOrder = 0
+      Text = '1'
     end
     object transZ: TEdit
-      Left = 104
+      Left = 136
       Height = 23
       Top = 88
       Width = 43
       OnExit = transXExit
       TabOrder = 3
+      Text = '0'
     end
     object Button1: TButton
       Left = 24
@@ -175,12 +183,99 @@ object Form1: TForm1
       OnClick = Button2Click
       TabOrder = 9
     end
+    object Button3: TButton
+      Left = 136
+      Height = 25
+      Top = 203
+      Width = 75
+      Caption = 'Button3'
+      OnClick = Button3Click
+      TabOrder = 10
+    end
+    object UpDown1: TUpDown
+      Left = 48
+      Height = 23
+      Top = 88
+      Width = 17
+      Associate = transX
+      Max = 1000
+      Min = -1000
+      OnClick = UpDown1Click
+      Position = 0
+      TabOrder = 11
+      Wrap = False
+    end
+    object UpDown2: TUpDown
+      Left = 115
+      Height = 23
+      Top = 88
+      Width = 17
+      Associate = transY
+      Max = 1000
+      Min = -1000
+      OnClick = UpDown1Click
+      Position = 0
+      TabOrder = 12
+      Wrap = False
+    end
+    object UpDown3: TUpDown
+      Left = 179
+      Height = 23
+      Top = 88
+      Width = 17
+      Associate = transZ
+      Max = 1000
+      Min = -1000
+      OnClick = UpDown1Click
+      Position = 0
+      TabOrder = 13
+      Wrap = False
+    end
+    object UpDown4: TUpDown
+      Left = 48
+      Height = 23
+      Top = 160
+      Width = 17
+      Associate = rotX
+      Max = 360
+      Min = -360
+      OnClick = UpDown4Click
+      Position = 0
+      TabOrder = 14
+      Wrap = False
+    end
+    object UpDown5: TUpDown
+      Left = 115
+      Height = 23
+      Top = 160
+      Width = 17
+      Associate = rotY
+      Max = 360
+      Min = -360
+      OnClick = UpDown4Click
+      Position = 0
+      TabOrder = 15
+      Wrap = False
+    end
+    object UpDown6: TUpDown
+      Left = 179
+      Height = 23
+      Top = 160
+      Width = 17
+      Associate = rotZ
+      Max = 360
+      Min = -360
+      OnClick = UpDown4Click
+      Position = 0
+      TabOrder = 16
+      Wrap = False
+    end
   end
   object Image1: TImage
     Left = 216
     Height = 484
     Top = 0
-    Width = 653
+    Width = 511
     Align = alClient
   end
 end

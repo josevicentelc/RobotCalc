@@ -28,7 +28,6 @@ type
     function getNodo(nodo_ : integer): TNodo;
     function getVectorTo(nodo_:integer; x_:double; y_:double; z_:double): TMatriz;
     function getVectorTo(x_:double; y_:double; z_:double): TMatriz;
-    function getMatrizHomogenea(nodo_: integer): TMatrizTransformacion;
 
   end;
 
@@ -61,19 +60,19 @@ end;
 procedure TRobot.trasladarX(nodo_ : integer; x_ : double);
 begin
    if (nodo_ < gradosLibertad) and (nodo_ >= 0) then
-        nodos[nodo_].trasladarX(x_);
+        nodos[nodo_].setX(x_);
 end;
 
 procedure TRobot.trasladarY(nodo_ : integer; y_ : double);
 begin
    if (nodo_ < gradosLibertad) and (nodo_ >= 0) then
-        nodos[nodo_].trasladarY(y_);
+        nodos[nodo_].setY(y_);
 end;
 
 procedure TRobot.trasladarZ(nodo_ : integer; z_ : double);
 begin
    if (nodo_ < gradosLibertad) and (nodo_ >= 0) then
-        nodos[nodo_].trasladarZ(z_);
+        nodos[nodo_].setZ(z_);
 end;
 
 procedure TRobot.rotarX(nodo_ : integer; x_ : double);
@@ -131,13 +130,6 @@ begin
         result := nodos[gradosLibertad-1].getGlobarVector(x_, y_, z_);
 end;
 
-function TRobot.getMatrizHomogenea(nodo_: integer): TMatrizTransformacion;
-begin
-     if (nodo_ >= 0) and (nodo_ < gradosLibertad) then
-          result := nodos[nodo_].getOrigen()
-     else
-          result := TMatrizTransformacion.create;
-end;
 
 end.
 

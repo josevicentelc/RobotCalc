@@ -5,7 +5,7 @@ unit utmatriztransformacion;
 interface
 
 uses
-  Classes, SysUtils, uTmatriz, math;
+  Classes, SysUtils, uTmatriz, math, Dialogs;
 
 type
   TMatrizTransformacion = class(TMatriz)
@@ -43,26 +43,17 @@ implementation
 constructor TMatrizTransformacion.create();
 begin
      inherited create(4, 4);
-//     angleX := 0;
-//     angleY := 0;
-//     angleZ := 0;
      setIdentidad();
 end;
 
 constructor TMatrizTransformacion.create(otra : TMatrizTransformacion);
 begin
      inherited create((otra as TMatriz));
-//     angleX := 0;
-//     angleY := 0;
-//     angleZ := 0;
 end;
 
 constructor TMatrizTransformacion.createFromMatriz(otra : TMatriz);
 begin
      inherited create(otra);
-//     angleX := 0;
-//     angleY := 0;
-//     angleZ := 0;
 end;
 
 
@@ -141,9 +132,9 @@ var
   rotMat : TMatrizTransformacion;
 begin
      rotMat:=TMatrizTransformacion.create();
-     angleInRadias:=degtograd(x_);
+     angleInRadias:=degtorad(x_);
      rotMat.setValue(1,1,cos(angleInRadias));
-     rotMat.setValue(1,2,sin(angleInRadias));
+     rotMat.setValue(1,2,sin(angleInRadias)*-1);
      rotMat.setValue(2,1,sin(angleInRadias));
      rotMat.setValue(2,2,cos(angleInRadias));
      setMatriz(producto(rotMat));
@@ -155,10 +146,10 @@ var
   rotMat : TMatrizTransformacion;
 begin
      rotMat:=TMatrizTransformacion.create();
-     angleInRadias:=degtograd(y_);
+     angleInRadias:=degtorad(y_);
      rotMat.setValue(0,0, cos(angleInRadias));
-     rotMat.setValue(0,2, sin(angleInRadias) * -1);
-     rotMat.setValue(2,0, sin(angleInRadias));
+     rotMat.setValue(0,2, sin(angleInRadias));
+     rotMat.setValue(2,0, sin(angleInRadias)*-1);
      rotMat.setValue(2,2, cos(angleInRadias));
      setMatriz(producto(rotMat));
 end;
@@ -169,7 +160,7 @@ var
   rotMat : TMatrizTransformacion;
 begin
      rotMat:=TMatrizTransformacion.create();
-     angleInRadias:=degtograd(z_);
+     angleInRadias:=degtorad(z_);
      rotMat.setValue(0,0,cos(angleInRadias));
      rotMat.setValue(0,1,sin(angleInRadias) * -1);
      rotMat.setValue(1,0,sin(angleInRadias));
