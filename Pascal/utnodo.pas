@@ -18,6 +18,9 @@ type
          nodos : TNodoList;
          parent : TNodo;
          origen : TMatrizTransformacion;
+
+         rotx, roty, rotz : double;
+         trax, tray, traz : double;
   protected
   public
          constructor create();
@@ -56,44 +59,48 @@ implementation
 
 constructor TNodo.create();
 begin
+     rotx:=0; roty:=0; rotz := 0;
+     trax:=0;  tray:=0; traz := 0;
      origen := TMatrizTransformacion.create();
      SetLength(nodos, 0);
 end;
 
 function TNodo.getTranslacionX() : double;
 begin
-     result := origen.getX();
+     result := trax;
 end;
 
 function TNodo.getTranslacionY() : double;
 begin
-     result := origen.getY();
+     result := tray;
 end;
 
 function TNodo.getTranslacionZ() : double;
 begin
-     result := origen.getZ();
+     result := traz;
 end;
 
 function TNodo.getRotacionX() : double;
 begin
-     result := origen.getRotX();
+     result := trax;
 end;
 
 function TNodo.getRotacionY() : double;
 begin
-     result := origen.getRotY();
+     result := tray;
 end;
 
 function TNodo.getRotacionZ() : double;
 begin
-     result := origen.getRotZ();
+     result := traz;
 end;
 
 constructor TNodo.create(n : TNodo);
 var
   I : Integer;
 begin
+     rotx:=0; roty:=0; rotz := 0;
+     trax:=0;  tray:=0; traz := 0;
      origen := n.getOrigen().copia();
      SetLength(nodos, 0);
      for I := 0 to length(n.getNodos()) -1 do
@@ -105,6 +112,8 @@ end;
 
 constructor TNodo.create(x_ : double; y_ : double; z_ : double);
 begin
+     rotx:=0; roty:=0; rotz := 0;
+     trax:=0;  tray:=0; traz := 0;
    origen := TMatrizTransformacion.create;
    SetLength(nodos, 0);
    trasladar(x_, y_, z_);
@@ -118,6 +127,9 @@ end;
 
 procedure TNodo.setTCP(x_ : double; y_ : double; z_ : double);
 begin
+     trax:=x_;
+     tray:=y_;
+     traz:=z_;
      origen.setX(x_);
      origen.setY(y_);
      origen.setZ(z_);
@@ -180,17 +192,17 @@ end;
 
 procedure TNodo.trasladarX(x_ : double);
 begin
-     origen.trasladarX(x_);
+     origen.setX(x_);
 end;
 
 procedure TNodo.trasladarY(y_ : double);
 begin
-     origen.trasladarY(y_);
+     origen.setY(y_);
 end;
 
 procedure TNodo.trasladarZ(z_ : double);
 begin
-     origen.trasladarZ(z_);
+     origen.setZ(z_);
 end;
 
 procedure TNodo.trasladar(x_ : double; y_ : double; z_ : double);
@@ -200,22 +212,27 @@ end;
 
 procedure TNodo.rotarX(x_ : double);
 begin
+     rotx:=x_;
      origen.rotarX(x_);
 end;
 
 procedure TNodo.rotarY(y_ : double);
 begin
+     roty:=y_;
      origen.rotarY(y_);
 end;
 
 procedure TNodo.rotarZ(z_ : double);
 begin
+     rotz:=z_;
      origen.rotarz(z_);
 end;
 
 procedure TNodo.rotar(x_ : double; y_ : double; z_ : double);
 begin
-     origen.rotar(x_, y_, z_);
+     rotarX(x_);
+     rotarY(y_);
+     rotarZ(z_);
 end;
 
 function TNodo.getGlobarVector(x_ : double; y_ : double; z_ : double): TMatriz;
@@ -254,6 +271,11 @@ function TNodo.getMatrizTransfGlobal() : TMatrizTransformacion;
 var
   C : TMatrizTransformacion;
 begin
+     origen := TMatrizTransformacion.create();
+     origen.setX(trax);
+     origen.setY(tray);
+     origen.setZ(traz);
+     origen.rotar(rotx, roty, rotz);
      if parent = nil then
      begin
           result := origen;

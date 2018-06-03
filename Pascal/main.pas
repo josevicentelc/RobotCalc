@@ -129,7 +129,8 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-  memo1.Lines.text := testMatriz();
+  //memo1.Lines.text := testMatriz();
+  memo1.Lines.add(robot.getNodo(0).getCoordenadas());
 end;
 
 end.
