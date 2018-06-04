@@ -5,7 +5,7 @@ unit utrobot;
 interface
 
 uses
-  Classes, SysUtils, utnodo, utmatriztransformacion, uTmatriz;
+  Classes, SysUtils, utnodo, utmatriztransformacion, uTmatriz, Graphics;
 
 type
 
@@ -26,6 +26,7 @@ type
     procedure rotarZ(nodo_ : integer; z_ : double);
     function getPos(nodo_: integer): TMatriz;
     function getNodo(nodo_ : integer): TNodo;
+    procedure draw(canvas : TCanvas);
     function getVectorTo(nodo_:integer; x_:double; y_:double; z_:double): TMatriz;
     function getVectorTo(x_:double; y_:double; z_:double): TMatriz;
 
@@ -55,6 +56,61 @@ begin
                       nodos[length(nodos)-1]:= ultimoNodo;
                     end;
           end;
+end;
+
+procedure TRobot.draw(canvas : TCanvas);
+var
+  I : Integer;
+  position : TMatriz;
+  lastx, lasty : integer;
+  x, y : integer;
+  marginLeft : integer;
+begin
+     marginLeft:=100;
+     lastx := 0;
+     lasty := 0;
+     for I := 0 to Length(nodos)-1 do
+         begin
+              canvas.Pen.Width:=3;
+
+              position := nodos[I].getGlobalCoordinates();
+              x := round(position.getValue(0,0));
+              y := round(position.getValue(1,0));
+              Canvas.Pen.color := clgray;
+
+              Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+x, canvas.Height - y);
+              canvas.Pen.Width:=4;
+
+
+              Canvas.Pen.color := clRed;
+              Canvas.Rectangle( marginLeft+x -5, canvas.Height - y-5, marginLeft+x+5, canvas.Height - y+5);
+              lastx := x;
+              lasty:= y;
+              position.Free;
+              canvas.Pen.Width:=2;
+
+              //Eje X
+              position := nodos[I].getGlobalCoordinates(30, 0, 0);
+              canvas.Pen.color := clred;
+              Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+Round(position.getValue(0,0)), canvas.Height - Round(position.getValue(1,0)));
+              canvas.TextOut(marginLeft+Round(position.getValue(0,0)), canvas.Height -Round(position.getValue(1,0)), 'X');
+              position.free;
+
+              //Eje Y
+              position := nodos[I].getGlobalCoordinates(0, 30, 0);
+              canvas.Pen.color := clGreen;
+              Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+Round(position.getValue(0,0)), canvas.Height - Round(position.getValue(1,0)));
+              canvas.TextOut(marginLeft+Round(position.getValue(0,0)), canvas.Height -Round(position.getValue(1,0)), 'Y');
+              position.free;
+
+              //Eje Z
+              position := nodos[I].getGlobalCoordinates(0, 0, 30);
+              canvas.Pen.color := clBlue;
+              Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+Round(position.getValue(0,0)), canvas.Height - Round(position.getValue(1,0)));
+              canvas.TextOut(marginLeft+Round(position.getValue(0,0)), canvas.Height -Round(position.getValue(1,0)), 'Z');
+              position.free;
+
+         end;
 end;
 
 procedure TRobot.trasladarX(nodo_ : integer; x_ : double);
