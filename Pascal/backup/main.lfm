@@ -1,66 +1,72 @@
 object Form1: TForm1
-  Left = 281
+  Left = 399
   Height = 484
-  Top = 164
-  Width = 869
+  Top = 153
+  Width = 727
   Caption = 'RoboCalc'
   ClientHeight = 484
-  ClientWidth = 869
+  ClientWidth = 727
   OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '1.8.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 484
     Top = 0
-    Width = 155
+    Width = 208
     Align = alLeft
     ClientHeight = 484
-    ClientWidth = 155
+    ClientWidth = 208
     TabOrder = 0
     object transX: TEdit
       Left = 5
       Height = 23
-      Top = 88
+      Top = 170
       Width = 43
       OnExit = transXExit
       TabOrder = 1
+      Text = '0'
     end
     object transY: TEdit
-      Left = 54
+      Left = 72
       Height = 23
-      Top = 88
+      Top = 170
       Width = 43
       OnExit = transXExit
       TabOrder = 2
+      Text = '0'
     end
     object rotX: TEdit
       Left = 5
       Height = 23
-      Top = 160
+      Top = 242
       Width = 43
       OnExit = rotXExit
       TabOrder = 4
+      Text = '0'
     end
     object rotZ: TEdit
-      Left = 104
+      Left = 136
       Height = 23
-      Top = 160
+      Top = 242
       Width = 43
       OnExit = rotXExit
       TabOrder = 6
+      Text = '0'
     end
     object rotY: TEdit
-      Left = 54
+      Left = 72
       Height = 23
-      Top = 160
+      Top = 242
       Width = 43
       OnExit = rotXExit
       TabOrder = 5
+      Text = '0'
     end
     object Label1: TLabel
       Left = 7
       Height = 15
-      Top = 56
+      Top = 138
       Width = 53
       Caption = 'Traslacion'
       ParentColor = False
@@ -68,7 +74,7 @@ object Form1: TForm1
     object Label2: TLabel
       Left = 8
       Height = 15
-      Top = 128
+      Top = 210
       Width = 47
       Caption = 'Rotacion'
       ParentColor = False
@@ -76,23 +82,23 @@ object Form1: TForm1
     object Label3: TLabel
       Left = 7
       Height = 15
-      Top = 72
+      Top = 154
       Width = 5
       Caption = 'x'
       ParentColor = False
     end
     object Label4: TLabel
-      Left = 56
+      Left = 72
       Height = 15
-      Top = 72
+      Top = 154
       Width = 6
       Caption = 'y'
       ParentColor = False
     end
     object Label5: TLabel
-      Left = 104
+      Left = 136
       Height = 15
-      Top = 72
+      Top = 154
       Width = 5
       Caption = 'z'
       ParentColor = False
@@ -100,23 +106,23 @@ object Form1: TForm1
     object Label6: TLabel
       Left = 8
       Height = 15
-      Top = 144
+      Top = 226
       Width = 5
       Caption = 'x'
       ParentColor = False
     end
     object Label7: TLabel
-      Left = 56
+      Left = 72
       Height = 15
-      Top = 144
+      Top = 226
       Width = 6
       Caption = 'y'
       ParentColor = False
     end
     object Label8: TLabel
-      Left = 104
+      Left = 136
       Height = 15
-      Top = 144
+      Top = 226
       Width = 5
       Caption = 'z'
       ParentColor = False
@@ -124,9 +130,10 @@ object Form1: TForm1
     object ComboBox1: TComboBox
       Left = 8
       Height = 23
-      Top = 16
+      Top = 106
       Width = 140
       ItemHeight = 15
+      ItemIndex = 0
       Items.Strings = (
         '1'
         '2'
@@ -138,49 +145,118 @@ object Form1: TForm1
       OnChange = ComboBox1Change
       Style = csDropDownList
       TabOrder = 0
+      Text = '1'
     end
     object transZ: TEdit
-      Left = 104
+      Left = 136
       Height = 23
-      Top = 88
+      Top = 170
       Width = 43
       OnExit = transXExit
       TabOrder = 3
+      Text = '0'
     end
-    object Button1: TButton
-      Left = 24
-      Height = 25
-      Top = 232
-      Width = 107
-      Caption = 'Dibujar robot'
-      OnClick = Button1Click
+    object UpDown1: TUpDown
+      Left = 48
+      Height = 23
+      Top = 170
+      Width = 17
+      Associate = transX
+      Max = 1000
+      Min = -1000
+      OnClick = UpDown1Click
+      Position = 0
       TabOrder = 7
+      Wrap = False
+    end
+    object UpDown2: TUpDown
+      Left = 115
+      Height = 23
+      Top = 170
+      Width = 17
+      Associate = transY
+      Max = 1000
+      Min = -1000
+      OnClick = UpDown1Click
+      Position = 0
+      TabOrder = 8
+      Wrap = False
+    end
+    object UpDown3: TUpDown
+      Left = 179
+      Height = 23
+      Top = 170
+      Width = 17
+      Associate = transZ
+      Max = 1000
+      Min = -1000
+      OnClick = UpDown1Click
+      Position = 0
+      TabOrder = 9
+      Wrap = False
+    end
+    object UpDown4: TUpDown
+      Left = 48
+      Height = 23
+      Top = 242
+      Width = 17
+      Associate = rotX
+      Max = 360
+      Min = -360
+      OnClick = UpDown4Click
+      Position = 0
+      TabOrder = 10
+      Wrap = False
+    end
+    object UpDown5: TUpDown
+      Left = 115
+      Height = 23
+      Top = 242
+      Width = 17
+      Associate = rotY
+      Max = 360
+      Min = -360
+      OnClick = UpDown4Click
+      Position = 0
+      TabOrder = 11
+      Wrap = False
+    end
+    object UpDown6: TUpDown
+      Left = 179
+      Height = 23
+      Top = 242
+      Width = 17
+      Associate = rotZ
+      Max = 360
+      Min = -360
+      OnClick = UpDown4Click
+      Position = 0
+      TabOrder = 12
+      Wrap = False
+    end
+    object Label9: TLabel
+      Left = 8
+      Height = 15
+      Top = 88
+      Width = 93
+      Caption = 'Nodo a modificar'
+      ParentColor = False
     end
     object Memo1: TMemo
       Left = 5
-      Height = 184
-      Top = 264
-      Width = 146
-      Lines.Strings = (
-        'Memo1'
-      )
-      TabOrder = 8
-    end
-    object Button2: TButton
-      Left = 5
-      Height = 25
-      Top = 456
-      Width = 75
-      Caption = 'Button2'
-      OnClick = Button2Click
-      TabOrder = 9
+      Height = 160
+      Top = 280
+      Width = 195
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 13
     end
   end
   object Image1: TImage
-    Left = 155
+    Left = 208
     Height = 484
     Top = 0
-    Width = 714
+    Width = 519
     Align = alClient
   end
 end

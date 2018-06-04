@@ -49,6 +49,7 @@ type
          function getGlobarVector(x_ : double; y_ : double; z_ : double): TMatriz;
          function getGlobarVector(vector : TMatriz): TMatriz;
          function getGlobalCoordinates() : TMatriz;
+         function getGlobalCoordinates(x_:double;y_:double;z_:double) : TMatriz;
          function getVectorTo(vector : TMatriz): TMatriz;
          function getMatrizTransf() : TMatrizTransformacion;
          function getMatrizTransfGlobal() : TMatrizTransformacion;
@@ -178,6 +179,7 @@ end;
 
 function TNodo.getGlobarVector(x_ : double; y_ : double; z_ : double): TMatriz;
 begin
+     //Todo
 end;
 
 function TNodo.getGlobarVector(vector : TMatriz): TMatriz;
@@ -215,12 +217,26 @@ var
   transf : TMatrizTransformacion;
 begin
      pos := getCoordenadas();
-//     showMessage('Mis coordenadas');
-//     showmessage(pos.ToString());
      transf := getMatrizTransfGlobal();
      result := transf.producto(pos);
      transf.free;
 end;
+
+function TNodo.getGlobalCoordinates(x_:double;y_:double;z_:double) : TMatriz;
+var
+  pos : TMatriz;
+  transf : TMatrizTransformacion;
+begin
+     pos := TMatriz.create(4,1);
+     pos.setValue(0,0,x_);
+     pos.setValue(1,0,y_);
+     pos.setValue(2,0,z_);
+     pos.setValue(3,0,1);
+     transf := getMatrizTransfGlobal();
+     result := transf.producto(pos);
+     transf.free;
+end;
+
 
 function TNodo.getMatrizTransfGlobal() : TMatrizTransformacion;
 var
@@ -228,17 +244,14 @@ var
 begin
      if parent = nil then
      begin
-//          showMessage('Soy el nodo base, mi matriz de transformacion es ');
           result := getMatrizTransf();
      end
      else
      begin
           C := getMatrizTransf();
           result :=parent.getMatrizTransfGlobal().producto(C);
-//          showMessage('Soy un nodo hijo, mi matriz es mi propia matriz por la de mi padre');
           C.free;
      end;
-//     showMessage(result.ToString());
 end;
 
 function TNodo.getNodos() : TNodoList;
