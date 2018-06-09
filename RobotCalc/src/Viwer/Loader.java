@@ -42,7 +42,7 @@ public class Loader {
     }
     
     
-    public int loadTexture(String file){
+    public void loadTexture(String file){
         Texture texture = null;
         try{
             //texture = TextureLoader("PNG", new FileInputStream("res/"+file));
@@ -52,8 +52,8 @@ public class Loader {
         }
     }
 
-    private int setupTextures(String filename) {
-        IntBuffer tmp = BufferUtils.createIntBuffer(1);
+    private void setupTextures(String filename) {
+      /*  IntBuffer tmp = BufferUtils.createIntBuffer(1);
         GL11.glGenTextures(tmp);
         tmp.rewind();
         try {
@@ -86,7 +86,7 @@ public class Loader {
             System.out.println("Error decoding " + filename);
         }
         tmp.rewind();
-        return tmp.get(0);
+        return tmp.get(0);*/
     }
 
     private int createVao(){

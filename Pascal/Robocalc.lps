@@ -9,7 +9,7 @@
         <Filename Value="Robocalc.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -21,7 +21,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="72"/>
         <CursorPos X="41" Y="87"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,37 +30,37 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uTmatriz"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="25"/>
-        <CursorPos X="3" Y="311"/>
-        <UsageCount Value="55"/>
+        <TopLine Value="11"/>
+        <CursorPos X="28" Y="20"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="utmatriztransformacion.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="4"/>
-        <CursorPos X="3" Y="159"/>
-        <UsageCount Value="48"/>
+        <TopLine Value="18"/>
+        <CursorPos X="70" Y="36"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="utnodo.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="23"/>
-        <CursorPos Y="24"/>
-        <UsageCount Value="47"/>
+        <CursorPos X="43" Y="29"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="utrobot.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="6"/>
-        <CursorPos X="86" Y="31"/>
-        <UsageCount Value="45"/>
+        <CursorPos X="71" Y="31"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -68,14 +68,14 @@
         <EditorIndex Value="3"/>
         <TopLine Value="40"/>
         <CursorPos Y="64"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
         <TopLine Value="713"/>
         <CursorPos X="22" Y="719"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -84,7 +84,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos X="50" Y="59"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
@@ -92,7 +92,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="512"/>
         <CursorPos X="14" Y="525"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
@@ -100,7 +100,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1033"/>
         <CursorPos X="3" Y="1047"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit10>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
