@@ -25,16 +25,16 @@ package robotcalc.Framework;
 public class TMatriz {
    
     //Decimals count precision
-    public static int precision = 3;
+    protected static int precision = 3;
     
     //double array to contain double values
-    private double[][] matriz ;
+    protected double[][] matriz ;
      
     //Count of Rows
-    private int rCount = 0;
+    protected int rCount = 0;
      
     //Count of Coolumns
-    private int cCount = 0;
+    protected int cCount = 0;
      
     //function that returns value rounded to nearest integer value
     public static int round(double d){

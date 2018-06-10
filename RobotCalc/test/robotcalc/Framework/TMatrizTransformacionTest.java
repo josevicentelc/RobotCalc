@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package robotcalc.Framework;
 
 import org.junit.After;
@@ -21,198 +16,28 @@ public class TMatrizTransformacionTest {
     public TMatrizTransformacionTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+    @Test
+    public void testConstructor() {
+        TMatrizTransformacion matriz = new TMatrizTransformacion();
+        if (matriz.RowCount() != 4 || matriz.ColCount() != 4) fail("Matriz de transformacion con una forma inesperada");
+        else{
+            for (int i=0;i<4;i++)
+                for (int j = 0;j<4;j++)
+                    if (i==j && matriz.getValue(i, j) != 1) fail("La matriz recien creada no es una matriz identidad");
+                    else
+                        if (i!=j && matriz.getValue(i, j) != 0) fail("La matriz recien creada no es una matriz identidad");
+        }
     }
 
-    /**
-     * Test of setPosicion method, of class TMatrizTransformacion.
-     */
     @Test
-    public void testSetPosicion() {
-        System.out.println("setPosicion");
-        double x_ = 0.0;
-        double y_ = 0.0;
-        double z_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.setPosicion(x_, y_, z_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of trasladar method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testTrasladar() {
-        System.out.println("trasladar");
-        double x_ = 0.0;
-        double y_ = 0.0;
-        double z_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.trasladar(x_, y_, z_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMatriz method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testSetMatriz() {
-        System.out.println("setMatriz");
-        TMatrizTransformacion otra = null;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.setMatriz(otra);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getX method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testGetX() {
-        System.out.println("getX");
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        double expResult = 0.0;
-        double result = instance.getX();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getY method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testGetY() {
-        System.out.println("getY");
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        double expResult = 0.0;
-        double result = instance.getY();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getZ method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testGetZ() {
-        System.out.println("getZ");
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        double expResult = 0.0;
-        double result = instance.getZ();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setX method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testSetX() {
-        System.out.println("setX");
-        double x_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.setX(x_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setY method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testSetY() {
-        System.out.println("setY");
-        double y_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.setY(y_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setZ method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testSetZ() {
-        System.out.println("setZ");
-        double z_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.setZ(z_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of rotar method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testRotar() {
-        System.out.println("rotar");
-        double x_ = 0.0;
-        double y_ = 0.0;
-        double z_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.rotar(x_, y_, z_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of rotarX method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testRotarX() {
-        System.out.println("rotarX");
-        double x_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.rotarX(x_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of rotarY method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testRotarY() {
-        System.out.println("rotarY");
-        double y_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.rotarY(y_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of rotarZ method, of class TMatrizTransformacion.
-     */
-    @Test
-    public void testRotarZ() {
-        System.out.println("rotarZ");
-        double z_ = 0.0;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        instance.rotarZ(z_);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testConstructorCopy() {
+        TMatrizTransformacion matriz = new TMatrizTransformacion();
+        matriz.setValue(0, 0, 1);
+        matriz.setValue(1, 1, 2);
+        matriz.setValue(2, 1, 3);
+        TMatrizTransformacion matriz2 = new TMatrizTransformacion(matriz);
+        if (matriz2.getValue(0, 0) != 1 || matriz2.getValue(1, 1) != 2 ||matriz2.getValue(2, 1) != 3 )
+            fail("La matriz no se copio correctamente");
     }
 
     /**
@@ -220,28 +45,132 @@ public class TMatrizTransformacionTest {
      */
     @Test
     public void testCopia() {
-        System.out.println("copia");
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        TMatrizTransformacion expResult = null;
-        TMatrizTransformacion result = instance.copia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        TMatrizTransformacion matriz = new TMatrizTransformacion();
+        matriz.setValue(0, 0, 1);
+        matriz.setValue(1, 1, 2);
+        matriz.setValue(2, 1, 3);
+        TMatrizTransformacion matriz2 = matriz.copia();
+        if (matriz2.getValue(0, 0) != 1 || matriz2.getValue(1, 1) != 2 ||matriz2.getValue(2, 1) != 3 )
+            fail("La matriz no se copio correctamente");
     }
+    
+    /**
+     * Test of trasladar method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testTrasladar() {
+        TMatrizTransformacion matriz = new TMatrizTransformacion();
+        matriz.trasladar(10,20,30);
+        if (matriz.getValue(0, 3) != 10) fail("X No se traslado correctamente");
+        if (matriz.getValue(1, 3) != 20) fail("Y No se traslado correctamente");
+        if (matriz.getValue(2, 3) != 30) fail("Z No se traslado correctamente");
+    }
+
+    /**
+     * Test of setMatriz method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testSetMatriz() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.setValue(0, 0, 1); m1.setValue(0, 1, 2); m1.setValue(0, 2, 3); m1.setValue(0, 3, 4); 
+        m1.setValue(1, 0, 5); m1.setValue(1, 1, 6); m1.setValue(1, 2, 7); m1.setValue(1, 3, 8); 
+        m1.setValue(2, 0, 9); m1.setValue(2, 1, 10); m1.setValue(2, 2, 11); m1.setValue(2, 3, 12); 
+        m1.setValue(3, 0, 13); m1.setValue(3, 1, 14); m1.setValue(3, 2, 15); m1.setValue(3, 3, 16); 
+        TMatrizTransformacion m2 = new TMatrizTransformacion();
+        m2.setMatriz(m1);
+        if (!m1.equals(m2)) fail("Set matriz no copio los valores correctamente");
+        
+    }
+
+    /**
+     * Test of getX method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testGetSetX() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.setX(10);
+        if (m1.getX()!= 10) fail("Valor de X incorrecto");
+        if (m1.getY()!= 0) fail("Valor de Y incorrecto");
+        if (m1.getZ()!= 0) fail("Valor de Z incorrecto");
+    }
+
+    /**
+     * Test of getY method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testGetY() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.setY(10);
+        if (m1.getX()!= 0) fail("Valor de X incorrecto");
+        if (m1.getY()!= 10) fail("Valor de Y incorrecto");
+        if (m1.getZ()!= 0) fail("Valor de Z incorrecto");
+    }
+
+    /**
+     * Test of getZ method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testGetZ() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.setZ(10);
+        if (m1.getX()!= 0) fail("Valor de X incorrecto");
+        if (m1.getY()!= 0) fail("Valor de Y incorrecto");
+        if (m1.getZ()!= 10) fail("Valor de Z incorrecto");
+    }
+
+
+    /**
+     * Test of rotar method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testRotar() {
+    }
+
+    /**
+     * Test of rotarX method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testRotarX() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.trasladar(4, 8, 12);
+        m1.rotarZ(-90);
+        if ( !TUtil.sameValue(m1.getX(), 8)) fail("Tras la rotacion se esperaba X=8, se obtiene " + m1.getX());
+        if ( !TUtil.sameValue(m1.getY(), -4)) fail("Tras la rotacion se esperaba Y=-4, se obtiene " + m1.getY());
+        if ( !TUtil.sameValue(m1.getZ(), 12)) fail("Tras la rotacion se esperaba Z=12, se obtiene " + m1.getZ());
+    }
+
+    /**
+     * Test of rotarY method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testRotarY() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.trasladar(4, 8, 12);
+        m1.rotarX(-90);
+        //if ( !TUtil.sameValue(m1.getX(), 8)) fail("Tras la rotacion se esperaba X=8, se obtiene " + m1.getX());
+        //if ( !TUtil.sameValue(m1.getY(), -4)) fail("Tras la rotacion se esperaba Y=-4, se obtiene " + m1.getY());
+        //if ( !TUtil.sameValue(m1.getZ(), 12)) fail("Tras la rotacion se esperaba Z=12, se obtiene " + m1.getZ());
+    }
+
+    /**
+     * Test of rotarZ method, of class TMatrizTransformacion.
+     */
+    @Test
+    public void testRotarZ() {
+        TMatrizTransformacion m1 = new TMatrizTransformacion();
+        m1.trasladar(4, 8, 12);
+        m1.rotarY(-90);
+        //if ( !TUtil.sameValue(m1.getX(), 8)) fail("Tras la rotacion se esperaba X=8, se obtiene " + m1.getX());
+        //if ( !TUtil.sameValue(m1.getY(), -4)) fail("Tras la rotacion se esperaba Y=-4, se obtiene " + m1.getY());
+        //if ( !TUtil.sameValue(m1.getZ(), 12)) fail("Tras la rotacion se esperaba Z=12, se obtiene " + m1.getZ());
+    }
+
 
     /**
      * Test of producto method, of class TMatrizTransformacion.
      */
     @Test
     public void testProducto_TMatrizTransformacion() {
-        System.out.println("producto");
-        TMatrizTransformacion otra = null;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        TMatrizTransformacion expResult = null;
-        TMatrizTransformacion result = instance.producto(otra);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -249,14 +178,6 @@ public class TMatrizTransformacionTest {
      */
     @Test
     public void testProducto_TMatriz() {
-        System.out.println("producto");
-        TMatriz otra = null;
-        TMatrizTransformacion instance = new TMatrizTransformacion();
-        TMatrizTransformacion expResult = null;
-        TMatrizTransformacion result = instance.producto(otra);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

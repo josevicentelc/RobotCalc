@@ -2,11 +2,14 @@
 package robotcalc;
 
 import Viwer.Display;
-import Viwer.Modelo;
-import robotcalc.Framework.TMatriz;
-import robotcalc.Framework.TMatrizTransformacion;
-import robotcalc.Framework.TNodo;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import javax.swing.JFrame;
 import robotcalc.Framework.TRobot;
+
+
 
 /**
  *
@@ -14,12 +17,16 @@ import robotcalc.Framework.TRobot;
  */
 public class RobotCalc {
 
-    
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-     
+        Display d = new Display();
+        d.run();
+        TRobot robot = new TRobot(6);
+        Graphics g = d.getGraphic();
+        //g.setColor(Color.GREEN);
+        //g.drawString("RoboCalc.", 5, 15);
+        
+        //robot.draw(d.getGraphic());
+        //d.repaint();
     }
 
 }
