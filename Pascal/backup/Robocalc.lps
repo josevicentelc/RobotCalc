@@ -9,7 +9,7 @@
         <Filename Value="Robocalc.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -18,10 +18,11 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="72"/>
-        <CursorPos X="41" Y="87"/>
-        <UsageCount Value="55"/>
+        <TopLine Value="133"/>
+        <CursorPos X="54" Y="160"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,37 +31,36 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uTmatriz"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="25"/>
-        <CursorPos X="3" Y="311"/>
-        <UsageCount Value="55"/>
+        <TopLine Value="11"/>
+        <CursorPos X="28" Y="20"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="utmatriztransformacion.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="4"/>
-        <CursorPos X="3" Y="159"/>
-        <UsageCount Value="48"/>
+        <TopLine Value="18"/>
+        <CursorPos X="70" Y="36"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="utnodo.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="23"/>
-        <CursorPos Y="24"/>
-        <UsageCount Value="47"/>
+        <TopLine Value="178"/>
+        <CursorPos X="43" Y="29"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="utrobot.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="6"/>
-        <CursorPos X="86" Y="31"/>
-        <UsageCount Value="45"/>
+        <TopLine Value="53"/>
+        <CursorPos X="34" Y="71"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -68,14 +68,14 @@
         <EditorIndex Value="3"/>
         <TopLine Value="40"/>
         <CursorPos Y="64"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
-        <TopLine Value="713"/>
-        <CursorPos X="22" Y="719"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="85"/>
+        <CursorPos X="44" Y="102"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -84,7 +84,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos X="50" Y="59"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
@@ -92,7 +92,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="512"/>
         <CursorPos X="14" Y="525"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
@@ -100,129 +100,129 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1033"/>
         <CursorPos X="3" Y="1047"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit10>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="142" Column="42" TopLine="134"/>
+        <Caret Line="174" Column="44" TopLine="164"/>
       </Position1>
       <Position2>
-        <Filename Value="main.pas"/>
-        <Caret Line="143" Column="42" TopLine="135"/>
+        <Filename Value="utrobot.pas"/>
+        <Caret Line="100" Column="104" TopLine="74"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="144" Column="42" TopLine="136"/>
+        <Filename Value="utrobot.pas"/>
+        <Caret Line="107" Column="117" TopLine="82"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="146" Column="42" TopLine="138"/>
+        <Filename Value="utrobot.pas"/>
+        <Caret Line="93" Column="117" TopLine="79"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="162" Column="69" TopLine="148"/>
+        <Caret Line="113" Column="24" TopLine="105"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="128" TopLine="121"/>
+        <Caret Line="114" Column="24" TopLine="106"/>
       </Position6>
       <Position7>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="63" Column="11" TopLine="49"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="113" Column="24" TopLine="105"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="83" Column="27" TopLine="76"/>
+        <Caret Line="84" Column="39" TopLine="77"/>
       </Position8>
       <Position9>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="100" Column="15" TopLine="67"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="85" Column="19" TopLine="64"/>
       </Position9>
       <Position10>
-        <Filename Value="utnodo.pas"/>
-        <Caret Line="51" Column="26" TopLine="33"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="84" Column="53" TopLine="71"/>
       </Position10>
       <Position11>
-        <Filename Value="utnodo.pas"/>
-        <Caret Line="52" Column="69" TopLine="32"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="85" Column="53" TopLine="72"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="96" Column="20" TopLine="76"/>
+        <Caret Line="84" Column="53" TopLine="71"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="95" Column="20" TopLine="75"/>
+        <Caret Line="73" Column="35" TopLine="71"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="94" Column="20" TopLine="74"/>
+        <Caret Line="82" Column="11" TopLine="62"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="93" Column="20" TopLine="73"/>
+        <Filename Value="utrobot.pas"/>
+        <Caret Line="76" Column="74" TopLine="63"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="92" Column="20" TopLine="72"/>
+        <Caret Line="52" Column="18" TopLine="41"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="93" Column="20" TopLine="73"/>
+        <Caret Line="112" Column="11" TopLine="86"/>
       </Position17>
       <Position18>
         <Filename Value="main.pas"/>
-        <Caret Line="174" Column="44" TopLine="164"/>
+        <Caret Line="107" Column="18" TopLine="74"/>
       </Position18>
       <Position19>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="100" Column="104" TopLine="74"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="139" Column="18" TopLine="136"/>
       </Position19>
       <Position20>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="107" Column="117" TopLine="82"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="135" Column="19" TopLine="115"/>
       </Position20>
       <Position21>
-        <Filename Value="utrobot.pas"/>
-        <Caret Line="93" Column="117" TopLine="79"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="59" Column="33" TopLine="34"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="113" Column="24" TopLine="105"/>
+        <Caret Line="85" Column="3" TopLine="58"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="114" Column="24" TopLine="106"/>
+        <Caret Line="59" Column="29" TopLine="52"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="113" Column="24" TopLine="105"/>
+        <Caret Line="134" Column="15" TopLine="126"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="84" Column="39" TopLine="77"/>
+        <Caret Line="152" Column="22" TopLine="144"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="85" Column="19" TopLine="64"/>
+        <Caret Line="173" TopLine="168"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="84" Column="53" TopLine="71"/>
+        <Caret Line="146" Column="60" TopLine="133"/>
       </Position27>
       <Position28>
-        <Filename Value="main.pas"/>
-        <Caret Line="85" Column="53" TopLine="72"/>
+        <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
+        <Caret Line="109" Column="3" TopLine="92"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="84" Column="53" TopLine="71"/>
+        <Filename Value="utrobot.pas"/>
+        <Caret Line="71" Column="25" TopLine="63"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="73" Column="35" TopLine="71"/>
+        <Filename Value="utrobot.pas"/>
+        <Caret Line="70" Column="27" TopLine="52"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

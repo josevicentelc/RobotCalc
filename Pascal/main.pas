@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, ComCtrls, utrobot, utnodo, uTmatriz, math;
+  StdCtrls, ComCtrls, utrobot, utnodo, uTmatriz, math, Types;
 
 type
 
@@ -44,11 +44,25 @@ type
     procedure ComboBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Image1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image1MouseLeave(Sender: TObject);
+    procedure Image1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+      );
+    procedure Image1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Image1MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: Boolean);
+    procedure Image1MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: Boolean);
     procedure rotXExit(Sender: TObject);
     procedure transXExit(Sender: TObject);
     procedure UpDown1Click(Sender: TObject; Button: TUDBtnType);
     procedure UpDown4Click(Sender: TObject; Button: TUDBtnType);
   private
+         lastMovex, lastMovey : integer;
+         rotating : boolean;
+         nodoProy : TNodo;
          robot : TRobot;
          function getNodo(): TNodo;
          procedure paintRobot();
@@ -71,14 +85,15 @@ var
   nodo : TNodo;
   matriz : TMatriz;
   a : TStringList;
-  lastx, lasty : integer;
+  lastx: integer;
+  lasty : integer;
   x, y : integer;
 begin
 
   Image1.Canvas.Pen.color := clWhite;
   Image1.Canvas.Brush.color := clWhite;
   Image1.Canvas.FillRect(0, 0, Image1.Width, Image1.Height);
-  robot.draw(Image1.canvas);
+  robot.draw(Image1.canvas, nodoProy.getMatrizTransf());
 
   memo1.lines.Clear;
   memo1.lines.add('Mat. Trans. nodo '+ComboBox1.Text) ;
@@ -98,19 +113,86 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  rotating:=false;
   robot := TRobot.create(6);
-  robot.trasladarY(0, 100);
+  robot.trasladarY(0, 300);
   robot.rotarX(1, 90);
   robot.trasladarX(1, 50);
-  robot.trasladarX(2, 50);
+  robot.trasladarX(2, 150);
   robot.trasladarX(3, 50);
-  robot.trasladarX(4, 50);
+  robot.trasladarX(4, 100);
   robot.trasladarX(5, 50);
+  nodoProy := TNodo.create;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
   paintRobot();
+end;
+
+procedure TForm1.Image1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  rotating := true;
+  lastMovex:=x;
+  lastMovey:=y;
+end;
+
+procedure TForm1.Image1MouseLeave(Sender: TObject);
+begin
+ rotating:=false;
+end;
+
+procedure TForm1.Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+ if (rotating) then
+  begin
+
+     if (ssCtrl in Shift) then
+      begin
+         //if (y > lastMovey) then nodoProy.sety(nodoProy.gety()+1);
+         //if (y < lastMovey) then nodoProy.sety(nodoProy.gety()-1);
+
+         //if (x > lastMovex) then nodoProy.setx(nodoProy.getx()-1);
+         //if (x < lastMovex) then nodoProy.setx(nodoProy.getx()+1);
+
+         nodoProy.setX(nodoProy.getX() + (x-lastMovex));
+         nodoProy.setY(nodoProy.getY() + (lastMovey-y));
+      end
+     else
+     begin
+       if (y > lastMovey) then nodoProy.rotarX(nodoProy.getRotacionX() + 1);
+       if (y < lastMovey) then nodoProy.rotarX(nodoProy.getRotacionX() - 1);
+       if (x > lastMovex) then nodoProy.rotarY(nodoProy.getRotacionY() + 1);
+       if (x < lastMovex) then nodoProy.rotarY(nodoProy.getRotacionY() - 1);
+     end;
+
+    lastMovex:=x;
+    lastMovey:=y;
+    paintRobot();
+  end;
+end;
+
+procedure TForm1.Image1MouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  rotating:=false;
+end;
+
+procedure TForm1.Image1MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+  nodoProy.setz(nodoProy.getz()+1);
+  paintRobot();
+end;
+
+procedure TForm1.Image1MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+  nodoProy.setz(nodoProy.getz()-1);
+  paintRobot();
+
 end;
 
 procedure TForm1.rotXExit(Sender: TObject);
