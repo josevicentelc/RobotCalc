@@ -1,21 +1,21 @@
 object Form1: TForm1
-  Left = 399
-  Height = 484
-  Top = 153
-  Width = 727
+  Left = 574
+  Height = 795
+  Top = 163
+  Width = 1114
   Caption = 'RoboCalc'
-  ClientHeight = 484
-  ClientWidth = 727
+  ClientHeight = 795
+  ClientWidth = 1114
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '1.8.2.0'
   object Panel1: TPanel
     Left = 0
-    Height = 484
+    Height = 795
     Top = 0
     Width = 208
     Align = alLeft
-    ClientHeight = 484
+    ClientHeight = 795
     ClientWidth = 208
     TabOrder = 0
     object transX: TEdit
@@ -39,7 +39,7 @@ object Form1: TForm1
     object rotX: TEdit
       Left = 5
       Height = 23
-      Top = 242
+      Top = 224
       Width = 43
       OnExit = rotXExit
       TabOrder = 4
@@ -48,7 +48,7 @@ object Form1: TForm1
     object rotZ: TEdit
       Left = 136
       Height = 23
-      Top = 242
+      Top = 224
       Width = 43
       OnExit = rotXExit
       TabOrder = 6
@@ -57,7 +57,7 @@ object Form1: TForm1
     object rotY: TEdit
       Left = 72
       Height = 23
-      Top = 242
+      Top = 224
       Width = 43
       OnExit = rotXExit
       TabOrder = 5
@@ -74,7 +74,7 @@ object Form1: TForm1
     object Label2: TLabel
       Left = 8
       Height = 15
-      Top = 210
+      Top = 200
       Width = 47
       Caption = 'Rotacion'
       ParentColor = False
@@ -106,7 +106,7 @@ object Form1: TForm1
     object Label6: TLabel
       Left = 8
       Height = 15
-      Top = 226
+      Top = 208
       Width = 5
       Caption = 'x'
       ParentColor = False
@@ -114,7 +114,7 @@ object Form1: TForm1
     object Label7: TLabel
       Left = 72
       Height = 15
-      Top = 226
+      Top = 208
       Width = 6
       Caption = 'y'
       ParentColor = False
@@ -122,7 +122,7 @@ object Form1: TForm1
     object Label8: TLabel
       Left = 136
       Height = 15
-      Top = 226
+      Top = 208
       Width = 5
       Caption = 'z'
       ParentColor = False
@@ -198,7 +198,7 @@ object Form1: TForm1
     object UpDown4: TUpDown
       Left = 48
       Height = 23
-      Top = 242
+      Top = 224
       Width = 17
       Associate = rotX
       Max = 360
@@ -211,7 +211,7 @@ object Form1: TForm1
     object UpDown5: TUpDown
       Left = 115
       Height = 23
-      Top = 242
+      Top = 224
       Width = 17
       Associate = rotY
       Max = 360
@@ -224,7 +224,7 @@ object Form1: TForm1
     object UpDown6: TUpDown
       Left = 179
       Height = 23
-      Top = 242
+      Top = 224
       Width = 17
       Associate = rotZ
       Max = 360
@@ -244,8 +244,8 @@ object Form1: TForm1
     end
     object Memo1: TMemo
       Left = 5
-      Height = 160
-      Top = 280
+      Height = 304
+      Top = 256
       Width = 195
       Enabled = False
       ReadOnly = True
@@ -254,9 +254,15 @@ object Form1: TForm1
   end
   object Image1: TImage
     Left = 208
-    Height = 484
+    Height = 795
     Top = 0
-    Width = 519
+    Width = 906
     Align = alClient
+    OnMouseDown = Image1MouseDown
+    OnMouseLeave = Image1MouseLeave
+    OnMouseMove = Image1MouseMove
+    OnMouseUp = Image1MouseUp
+    OnMouseWheelDown = Image1MouseWheelDown
+    OnMouseWheelUp = Image1MouseWheelUp
   end
 end

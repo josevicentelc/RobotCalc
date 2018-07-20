@@ -26,7 +26,7 @@ type
     procedure rotarZ(nodo_ : integer; z_ : double);
     function getPos(nodo_: integer): TMatriz;
     function getNodo(nodo_ : integer): TNodo;
-    procedure draw(canvas : TCanvas);
+    procedure draw(canvas : TCanvas; mProy : TMatrizTransformacion);
     function getVectorTo(nodo_:integer; x_:double; y_:double; z_:double): TMatriz;
     function getVectorTo(x_:double; y_:double; z_:double): TMatriz;
 
@@ -58,7 +58,7 @@ begin
           end;
 end;
 
-procedure TRobot.draw(canvas : TCanvas);
+procedure TRobot.draw(canvas : TCanvas;  mProy : TMatrizTransformacion);
 var
   I : Integer;
   position : TMatriz;
@@ -67,18 +67,22 @@ var
   marginLeft : integer;
 begin
      marginLeft:=100;
-     lastx := 0;
-     lasty := 0;
+     lastx := mProy.getX();
+     lasty := mProy.getY();
      for I := 0 to Length(nodos)-1 do
          begin
               canvas.Pen.Width:=3;
 
-              position := nodos[I].getGlobalCoordinates();
+
+              position := mProy.producto(nodos[I].getGlobalCoordinates());
               x := round(position.getValue(0,0));
               y := round(position.getValue(1,0));
               Canvas.Pen.color := clgray;
+
               Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+x, canvas.Height - y);
               canvas.Pen.Width:=4;
+
+
               Canvas.Pen.color := clRed;
               Canvas.Rectangle( marginLeft+x -5, canvas.Height - y-5, marginLeft+x+5, canvas.Height - y+5);
               lastx := x;
@@ -87,21 +91,21 @@ begin
               canvas.Pen.Width:=2;
 
               //Eje X
-              position := nodos[I].getGlobalCoordinates(30, 0, 0);
+              position := mProy.producto(nodos[I].getGlobalCoordinates(30, 0, 0));
               canvas.Pen.color := clred;
               Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+Round(position.getValue(0,0)), canvas.Height - Round(position.getValue(1,0)));
               canvas.TextOut(marginLeft+Round(position.getValue(0,0)), canvas.Height -Round(position.getValue(1,0)), 'X');
               position.free;
 
               //Eje Y
-              position := nodos[I].getGlobalCoordinates(0, 30, 0);
+              position := mProy.producto(nodos[I].getGlobalCoordinates(0, 30, 0));
               canvas.Pen.color := clGreen;
               Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+Round(position.getValue(0,0)), canvas.Height - Round(position.getValue(1,0)));
               canvas.TextOut(marginLeft+Round(position.getValue(0,0)), canvas.Height -Round(position.getValue(1,0)), 'Y');
               position.free;
 
               //Eje Z
-              position := nodos[I].getGlobalCoordinates(0, 0, 30);
+              position := mProy.producto(nodos[I].getGlobalCoordinates(0, 0, 30));
               canvas.Pen.color := clBlue;
               Canvas.Line(marginLeft+lastx, canvas.Height - lasty, marginLeft+Round(position.getValue(0,0)), canvas.Height - Round(position.getValue(1,0)));
               canvas.TextOut(marginLeft+Round(position.getValue(0,0)), canvas.Height -Round(position.getValue(1,0)), 'Z');
